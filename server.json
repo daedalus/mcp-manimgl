@@ -1,9 +1,9 @@
 {
   "$schema": "https://static.modelcontextprotocol.io/schemas/2025-12-11/server.schema.json",
-  "name": "io.github.dclavijo/mcp-manimgl",
+  "name": "io.github.daedalus/mcp-manimgl",
   "description": "MCP server exposing manimgl mathematical animation functionality as tools for LLMs",
   "repository": {
-    "url": "https://github.com/dclavijo/mcp-manimgl",
+    "url": "https://github.com/daedalus/mcp-manimgl",
     "source": "github"
   },
   "version": "0.1.0",

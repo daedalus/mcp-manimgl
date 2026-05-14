@@ -4,7 +4,7 @@
 [![Python](https://img.shields.io/pypi/pyversions/mcp-manimgl.svg)](https://pypi.org/project/mcp-manimgl/)
 [![Ruff](https://img.shields.io/endpoint?url=https://raw.githubusercontent.com/astral-sh/ruff/master/assets/badge/v2.json)](https://github.com/astral-sh/ruff)
 
-mcp-name: io.github.dclavijo/mcp-manimgl
+mcp-name: io.github.daedalus/mcp-manimgl
 
 ## Install
 
