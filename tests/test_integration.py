@@ -1,4 +1,4 @@
-from mcp_manimgl_server.core import AnimationBuilder, MobjectBuilder
+from mcp_manimgl.core import AnimationBuilder, MobjectBuilder
 
 
 class TestMobjectTemplates:
@@ -39,7 +39,7 @@ class TestMobjectTemplates:
         assert anim2.animation_type == "fade_out"
 
     def test_empty_scene_no_elements(self) -> None:
-        from mcp_manimgl_server.core import SceneManager
+        from mcp_manimgl.core import SceneManager
 
         sm = SceneManager()
         info = sm.get_info()

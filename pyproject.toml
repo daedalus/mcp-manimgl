@@ -3,7 +3,7 @@ requires = ["hatchling"]
 build-backend = "hatchling.build"
 
 [project]
-name = "mcp-manimgl-server"
+name = "mcp-manimgl"
 version = "0.1.0"
 description = "MCP server exposing manimgl (Manim OpenGL) mathematical animation functionality as tools for LLMs"
 readme = "README.md"
@@ -18,6 +18,7 @@ dependencies = [
 
 [project.optional-dependencies]
 render = ["manimgl"]
+audio = ["gtts", "pyfluidsynth"]
 dev = [
     "ruff",
     "mypy",
@@ -38,21 +39,21 @@ lint = [
     "vulture",
 ]
 mcp = ["fastmcp"]
-all = ["mcp-manimgl-server[dev,test,lint,mcp]"]
+all = ["mcp-manimgl[dev,test,lint,mcp]"]
 
 [project.scripts]
-mcp-manimgl-server = "mcp_manimgl_server.__main__:main"
+mcp-manimgl = "mcp_manimgl.__main__:main"
 
 [project.urls]
-Homepage = "https://github.com/dclavijo/mcp-manimgl-server"
-Repository = "https://github.com/dclavijo/mcp-manimgl-server"
-Issues = "https://github.com/dclavijo/mcp-manimgl-server/issues"
+Homepage = "https://github.com/dclavijo/mcp-manimgl"
+Repository = "https://github.com/dclavijo/mcp-manimgl"
+Issues = "https://github.com/dclavijo/mcp-manimgl/issues"
 
 [tool.hatch.build.targets.wheel]
-packages = ["src/mcp_manimgl_server"]
+packages = ["src/mcp_manimgl"]
 
 [tool.hatch.build.targets.sdist]
-include = ["src/mcp_manimgl_server"]
+include = ["src/mcp_manimgl"]
 
 [tool.ruff]
 line-length = 88

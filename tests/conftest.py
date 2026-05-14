@@ -1,7 +1,7 @@
 import pytest
 
-from mcp_manimgl_server.core import SceneManager
-from mcp_manimgl_server.core.scene_manager import AnimationRecord, MobjectRecord
+from mcp_manimgl.core import SceneManager
+from mcp_manimgl.core.scene_manager import AnimationRecord, MobjectRecord
 
 
 @pytest.fixture

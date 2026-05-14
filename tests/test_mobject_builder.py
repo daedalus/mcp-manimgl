@@ -1,5 +1,5 @@
 
-from mcp_manimgl_server.core.mobject_builder import MobjectBuilder
+from mcp_manimgl.core.mobject_builder import MobjectBuilder
 
 
 class TestMobjectBuilder:

@@ -1,4 +1,4 @@
-# AGENTS.md — mcp-manimgl-server
+# AGENTS.md — mcp-manimgl
 
 ## Overview
 
@@ -50,7 +50,7 @@ git push && git push --tags
 ## MCP Server
 
 ```bash
-pip install mcp-manimgl-server
+pip install mcp-manimgl
 ```
 
 Add to your `mcp.json`:
@@ -58,8 +58,8 @@ Add to your `mcp.json`:
 ```json
 {
   "mcpServers": {
-    "mcp-manimgl-server": {
-      "command": "mcp-manimgl-server"
+    "mcp-manimgl": {
+      "command": "mcp-manimgl"
     }
   }
 }
