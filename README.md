@@ -133,10 +133,7 @@ When both background music and narration are present, `render_scene` automatical
 
 A narrated animation explaining Shor's algorithm with LaTeX, 5 TTS narration tracks, and classical MIDI background music.
 
-[![Shor's Algorithm](data/thumbnail.jpg)](data/Shors_Algorithm.mp4)
-
-> **Watch:** [youtu.be/ojtm5Yuf33A](https://youtu.be/ojtm5Yuf33A)
-> **Result:** `data/Shors_Algorithm.mp4` (86s, 1080p, 2.3 MB)
+> **Watch:** [![YouTube](https://img.youtube.com/vi/ojtm5Yuf33A/hqdefault.jpg)](https://youtu.be/ojtm5Yuf33A)
 
 MCP tool call sequence:
 
