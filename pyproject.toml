@@ -1,0 +1,108 @@
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[project]
+name = "mcp-manimgl-server"
+version = "0.1.0"
+description = "MCP server exposing manimgl (Manim OpenGL) mathematical animation functionality as tools for LLMs"
+readme = "README.md"
+requires-python = ">=3.11"
+license = {text = "MIT"}
+authors = [
+    {name = "Darío Clavijo", email = "clavijodario@gmail.com"}
+]
+dependencies = [
+    "fastmcp",
+]
+
+[project.optional-dependencies]
+render = ["manimgl"]
+dev = [
+    "ruff",
+    "mypy",
+    "hatch",
+    "pip-api",
+    "impactguard",
+]
+test = [
+    "pytest",
+    "pytest-cov",
+    "pytest-mock",
+    "pytest-asyncio",
+    "hypothesis",
+]
+lint = [
+    "prospector[with_ruff,with_mypy]",
+    "semgrep",
+    "vulture",
+]
+mcp = ["fastmcp"]
+all = ["mcp-manimgl-server[dev,test,lint,mcp]"]
+
+[project.scripts]
+mcp-manimgl-server = "mcp_manimgl_server.__main__:main"
+
+[project.urls]
+Homepage = "https://github.com/dclavijo/mcp-manimgl-server"
+Repository = "https://github.com/dclavijo/mcp-manimgl-server"
+Issues = "https://github.com/dclavijo/mcp-manimgl-server/issues"
+
+[tool.hatch.build.targets.wheel]
+packages = ["src/mcp_manimgl_server"]
+
+[tool.hatch.build.targets.sdist]
+include = ["src/mcp_manimgl_server"]
+
+[tool.ruff]
+line-length = 88
+target-version = "py311"
+
+[tool.ruff.lint]
+select = ["E", "F", "W", "I", "UP", "ANN", "TCH", "N", "C4", "ARG"]
+ignore = ["E501"]
+
+[tool.ruff.lint.per-file-ignores]
+"__init__.py" = ["F401", "ANN"]
+
+[tool.ruff.lint.pydocstyle]
+convention = "google"
+
+[tool.mypy]
+python_version = "3.11"
+strict = true
+warn_return_any = true
+warn_unused_ignores = true
+
+[tool.prospector]
+output-format = "text"
+strictness = "medium"
+test-warnings = false
+
+[tool.prospector.tools]
+ruff = true
+mypy = true
+pylint = true
+pyflakes = false
+pycodestyle = false
+mccabe = true
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+addopts = "-v --tb=short --cov=src --cov-fail-under=70"
+filterwarnings = ["ignore::DeprecationWarning"]
+
+[tool.coverage.run]
+source = ["src"]
+branch = true
+
+[tool.coverage.report]
+exclude = ["tests/*", "*/__init__.py"]
+exclude_lines = [
+    "pragma: no cover",
+    "def __repr__",
+    "raise AssertionError",
+    "raise NotImplementedError",
+    "if __name__ == .__main__.:",
+    "if TYPE_CHECKING:",
+]
