@@ -1,4 +1,4 @@
-# SPEC.md — mcp-manimgl-server
+# SPEC.md — mcp-manimgl
 
 ## Purpose
 

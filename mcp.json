@@ -1,7 +1,7 @@
 {
   "mcpServers": {
-    "mcp-manimgl-server": {
-      "command": "mcp-manimgl-server",
+    "mcp-manimgl": {
+      "command": "mcp-manimgl",
       "env": {}
     }
   }

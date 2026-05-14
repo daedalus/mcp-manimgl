@@ -40,12 +40,12 @@ class ManimAdapter:
         self, output_path: str | None = None, fmt: str = "mp4"
     ) -> dict[str, Any]:
         manifest = self._scene_manager.get_audio_manifest()
-        has_music = bool(manifest["music"])
+        has_audio = bool(manifest["music"]) or bool(manifest["narration"])
 
-        if has_music and fmt != "mp4":
-            has_music = False
+        if has_audio and fmt != "mp4":
+            has_audio = False
 
-        script = self._scene_manager.generate_script(include_audio=not has_music)
+        script = self._scene_manager.generate_script(include_audio=not has_audio)
 
         if output_path is None:
             output_dir = tempfile.mkdtemp(prefix="manimgl_")
@@ -67,12 +67,14 @@ class ManimAdapter:
                     sys.executable,
                     "-m",
                     "manimlib",
+                    "-w",
+                    "-q",
+                    "--video_dir",
+                    output_dir,
+                    "--file_name",
+                    os.path.splitext(os.path.basename(output_path))[0],
                     script_file,
                     "GeneratedScene",
-                    "-w",
-                    "-o",
-                    output_path,
-                    "-q",
                 ],
                 capture_output=True,
                 text=True,
@@ -90,7 +92,7 @@ class ManimAdapter:
                                 actual_output = os.path.join(dirpath, fname)
                                 break
 
-                if has_music and os.path.exists(actual_output):
+                if has_audio and os.path.exists(actual_output):
                     try:
                         actual_output = self._mix_audio_to_video(
                             actual_output, manifest
@@ -138,9 +140,7 @@ class ManimAdapter:
                 "error": "manimgl binary not found. Is manimgl installed?",
             }
 
-    def _mix_audio_to_video(
-        self, video_path: str, manifest: dict[str, Any]
-    ) -> str:
+    def _mix_audio_to_video(self, video_path: str, manifest: dict[str, Any]) -> str:
         from mcp_manimgl.utils.audio_mixer import mix_audio
 
         music = manifest.get("music", [])
@@ -202,11 +202,13 @@ class ManimAdapter:
                     sys.executable,
                     "-m",
                     "manimlib",
+                    "-s",
+                    "--video_dir",
+                    output_dir,
+                    "--file_name",
+                    os.path.splitext(os.path.basename(output_path))[0],
                     script_file,
                     "GeneratedScene",
-                    "-s",
-                    "-o",
-                    output_path,
                 ],
                 capture_output=True,
                 text=True,

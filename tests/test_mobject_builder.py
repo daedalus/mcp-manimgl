@@ -1,4 +1,3 @@
-
 from mcp_manimgl.core.mobject_builder import MobjectBuilder
 
 

@@ -269,7 +269,7 @@ class MobjectBuilder:
         cls, tex_string: str, font_size: float = 48, color: str = "#FFFFFF"
     ) -> MobjectRecord:
         mid = cls._next_id()
-        escaped = tex_string.replace("'", "\\'")
+        escaped = tex_string.replace("\\", "\\\\").replace("'", "\\'")
         code = f"{mid} = Tex('{escaped}', font_size={font_size}, color='{color}')"
         return MobjectRecord(
             mobject_id=mid,
@@ -377,7 +377,7 @@ class MobjectBuilder:
         dot_id = f"{mid}_dot"
         label_id = f"{mid}_label"
         pt = cls._position_str(point)
-        escaped = label.replace("'", "\\'")
+        escaped = label.replace("\\", "\\\\").replace("'", "\\'")
         code = (
             f"{dot_id} = Dot({pt}, color='{color}', radius={dot_radius})\n"
             f"{label_id} = Tex('{escaped}', font_size=24, color='{color}')\n"
@@ -439,7 +439,7 @@ class MobjectBuilder:
     ) -> MobjectRecord:
         mid = cls._next_id()
         if label is not None:
-            escaped = label.replace("'", "\\'")
+            escaped = label.replace("\\", "\\\\").replace("'", "\\'")
             brace_id = f"{mid}_brace"
             code = (
                 f"{brace_id} = Brace({mobject_id}, direction={direction}, color='{color}')\n"

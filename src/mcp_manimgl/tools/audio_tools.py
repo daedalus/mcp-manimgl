@@ -42,8 +42,7 @@ def register_audio_tools(mcp: FastMCP, scene_manager: SceneManager) -> None:
 
         audio_id = f"audio_{uuid.uuid4().hex[:8]}"
         audio_dir = os.path.join(
-            os.path.dirname(os.path.abspath(__file__)),
-            "..", "..", "..", "audio"
+            os.path.dirname(os.path.abspath(__file__)), "..", "..", "..", "audio"
         )
         os.makedirs(audio_dir, exist_ok=True)
         file_path = os.path.join(audio_dir, f"{audio_id}.mp3")
@@ -118,8 +117,7 @@ def register_audio_tools(mcp: FastMCP, scene_manager: SceneManager) -> None:
 
         audio_id = f"bgm_{uuid.uuid4().hex[:8]}"
         audio_dir = os.path.join(
-            os.path.dirname(os.path.abspath(__file__)),
-            "..", "..", "..", "audio"
+            os.path.dirname(os.path.abspath(__file__)), "..", "..", "..", "audio"
         )
         os.makedirs(audio_dir, exist_ok=True)
 

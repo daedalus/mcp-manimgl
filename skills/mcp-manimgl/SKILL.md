@@ -1,11 +1,11 @@
-name: mcp-manimgl-server
+name: mcp-manimgl
 description: >
   MCP server that exposes manimgl (Manim OpenGL) functionality as tools for LLMs.
   Enables AI agents to create mathematical animations programmatically through MCP tools.
   Triggers on: manim, manimgl, mathematical animation creation.
 ---
 
-# mcp-manimgl-server Skill
+# mcp-manimgl Skill
 
 ## Description
 

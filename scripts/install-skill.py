@@ -13,7 +13,7 @@ AGENT_DIRECTORIES = {
     "opencode": Path.home() / ".opencode" / "skills",
 }
 
-PROJECT_NAME = "mcp-manimgl-server"
+PROJECT_NAME = "mcp-manimgl"
 SOURCE_DIR = Path(__file__).parent.parent / "skills" / PROJECT_NAME
 
 

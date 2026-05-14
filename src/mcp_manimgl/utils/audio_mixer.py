@@ -1,7 +1,9 @@
 from __future__ import annotations
 
 import json
+import os
 import subprocess
+import tempfile
 from typing import Any
 
 
@@ -9,8 +11,10 @@ def _get_audio_duration(path: str) -> float:
     result = subprocess.run(
         [
             "ffprobe",
-            "-v", "quiet",
-            "-print_format", "json",
+            "-v",
+            "quiet",
+            "-print_format",
+            "json",
             "-show_streams",
             str(path),
         ],
@@ -24,6 +28,60 @@ def _get_audio_duration(path: str) -> float:
         if dur:
             return float(dur)
     return 0.0
+
+
+def _get_audio_channels(path: str) -> int:
+    result = subprocess.run(
+        [
+            "ffprobe",
+            "-v",
+            "quiet",
+            "-print_format",
+            "json",
+            "-show_streams",
+            str(path),
+        ],
+        capture_output=True,
+        text=True,
+        timeout=30,
+    )
+    data = json.loads(result.stdout)
+    for stream in data.get("streams", []):
+        ch = stream.get("channels")
+        if ch:
+            return int(ch)
+    return 2
+
+
+def _preloop_audio(
+    source_path: str, target_duration: float
+) -> str:
+    """Pre-loop an audio file to match target_duration using stream_loop."""
+    looped = tempfile.NamedTemporaryFile(
+        suffix=".wav", prefix="bgm_loop_", delete=False
+    )
+    looped_path = looped.name
+    looped.close()
+    subprocess.run(
+        [
+            "ffmpeg",
+            "-y",
+            "-stream_loop",
+            "-1",
+            "-i",
+            source_path,
+            "-t",
+            str(target_duration),
+            "-acodec",
+            "pcm_s16le",
+            looped_path,
+        ],
+        capture_output=True,
+        text=True,
+        timeout=120,
+        check=True,
+    )
+    return looped_path
 
 
 def mix_audio(
@@ -69,11 +127,22 @@ def mix_audio(
     if video_duration <= 0:
         video_duration = 60.0
 
+    cleanup_paths: list[str] = []
+
     inputs = [video_path]
     input_labels = []
 
     if music_path:
-        inputs.append(music_path)
+        if music_loop:
+            music_dur = _get_audio_duration(music_path)
+            if music_dur > 0 and music_dur < video_duration:
+                looped_path = _preloop_audio(music_path, video_duration + 2.0)
+                cleanup_paths.append(looped_path)
+                inputs.append(looped_path)
+            else:
+                inputs.append(music_path)
+        else:
+            inputs.append(music_path)
         music_idx = 1
         input_labels.append("music")
 
@@ -85,16 +154,9 @@ def mix_audio(
     filter_outputs: list[str] = []
 
     if music_path:
-        loop_filter = ""
-        if music_loop:
-            music_dur = _get_audio_duration(music_path)
-            if music_dur > 0:
-                loops_needed = int(video_duration / music_dur) + 1
-                loop_filter = f",aloop=loop={loops_needed}:size=2000000000"
-        label = f"[music_{music_idx}]"
         dur_sec = video_duration + 2.0
         filter_parts.append(
-            f"[{music_idx}:a]volume={music_volume}{loop_filter}"
+            f"[{music_idx}:a]volume={music_volume}"
             f",atrim=duration={dur_sec}[music_trim]"
         )
         filter_outputs.append("[music_trim]")
@@ -107,8 +169,10 @@ def mix_audio(
         start_ms = int(nt.get("start_time", 0) * 1000)
         label = f"[nar_delayed_{i}]"
         dur_ms = int(_get_audio_duration(nt["file_path"]) * 1000)
+        channels = _get_audio_channels(nt["file_path"])
+        adelay_arg = f"{start_ms}|{start_ms}" if channels > 1 else str(start_ms)
         filter_parts.append(
-            f"[{idx}:a]adelay={start_ms}|{start_ms}"
+            f"[{idx}:a]adelay={adelay_arg}"
             f",atrim=duration={dur_ms + start_ms}ms[{label}]"
         )
         narration_mix_parts.append(label)
@@ -140,8 +204,7 @@ def mix_audio(
         )
 
         filter_parts.append(
-            "[narration_mix][music_ducked]amix=inputs=2"
-            ":weights=1 0.7[final_audio]"
+            "[narration_mix][music_ducked]amix=inputs=2:weights=1 0.7[final_audio]"
         )
         audio_out = "[final_audio]"
     elif music_path:
@@ -159,27 +222,45 @@ def mix_audio(
     cmd = [
         "ffmpeg",
         "-y",
-        "-i", video_path,
+        "-i",
+        video_path,
     ]
     for inp in inputs[1:]:
         cmd.extend(["-i", inp])
 
-    cmd.extend([
-        "-filter_complex", filter_complex,
-        "-map", "[0:v]",
-        "-map", audio_out,
-        "-c:v", "copy",
-        "-c:a", "aac",
-        "-b:a", "192k",
-        "-shortest",
-        str(output_path),
-    ])
+    cmd.extend(
+        [
+            "-filter_complex",
+            filter_complex,
+            "-map",
+            "[0:v]",
+            "-map",
+            audio_out,
+            "-c:v",
+            "copy",
+            "-c:a",
+            "aac",
+            "-b:a",
+            "192k",
+            "-shortest",
+            str(output_path),
+        ]
+    )
 
     try:
         subprocess.run(cmd, capture_output=True, text=True, timeout=300, check=True)
     except subprocess.CalledProcessError as exc:
-        raise RuntimeError(
-            f"Audio mixing failed:\n{exc.stderr}"
-        ) from exc
+        for p in cleanup_paths:
+            try:
+                os.unlink(p)
+            except OSError:
+                pass
+        raise RuntimeError(f"Audio mixing failed:\n{exc.stderr}") from exc
+
+    for p in cleanup_paths:
+        try:
+            os.unlink(p)
+        except OSError:
+            pass
 
     return output_path

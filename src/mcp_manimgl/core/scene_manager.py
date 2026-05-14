@@ -125,10 +125,12 @@ class SceneManager:
 
     def add_mobject(self, record: MobjectRecord) -> None:
         self._state.mobjects.append(record)
-        self._timeline.append(TimelineEvent(
-            kind=EventKind.MOBJECT,
-            data={"record": record},
-        ))
+        self._timeline.append(
+            TimelineEvent(
+                kind=EventKind.MOBJECT,
+                data={"record": record},
+            )
+        )
 
     def get_mobject(self, mobject_id: str) -> MobjectRecord | None:
         for m in self._state.mobjects:
@@ -140,39 +142,52 @@ class SceneManager:
         for i, m in enumerate(self._state.mobjects):
             if m.mobject_id == mobject_id:
                 self._state.mobjects.pop(i)
-                self._timeline = [e for e in self._timeline
-                                  if not (e.kind == EventKind.MOBJECT
-                                          and e.data["record"].mobject_id == mobject_id)]
+                self._timeline = [
+                    e
+                    for e in self._timeline
+                    if not (
+                        e.kind == EventKind.MOBJECT
+                        and e.data["record"].mobject_id == mobject_id
+                    )
+                ]
                 return True
         return False
 
     def add_animation(self, record: AnimationRecord) -> None:
         self._state.animations.append(record)
-        self._timeline.append(TimelineEvent(
-            kind=EventKind.ANIMATION,
-            data={"record": record},
-        ))
+        self._timeline.append(
+            TimelineEvent(
+                kind=EventKind.ANIMATION,
+                data={"record": record},
+            )
+        )
 
     def add_wait(self, duration: float) -> None:
         self._state.wait_times.append(duration)
-        self._timeline.append(TimelineEvent(
-            kind=EventKind.WAIT,
-            data={"duration": duration},
-        ))
+        self._timeline.append(
+            TimelineEvent(
+                kind=EventKind.WAIT,
+                data={"duration": duration},
+            )
+        )
 
     def add_audio(self, record: AudioRecord) -> None:
         self._state.audio_entries.append(record)
-        self._timeline.append(TimelineEvent(
-            kind=EventKind.AUDIO,
-            data={"record": record},
-        ))
+        self._timeline.append(
+            TimelineEvent(
+                kind=EventKind.AUDIO,
+                data={"record": record},
+            )
+        )
 
     def add_custom_code(self, code: str) -> None:
         self._state.custom_code.append(code)
-        self._timeline.append(TimelineEvent(
-            kind=EventKind.CUSTOM_CODE,
-            data={"code": code},
-        ))
+        self._timeline.append(
+            TimelineEvent(
+                kind=EventKind.CUSTOM_CODE,
+                data={"code": code},
+            )
+        )
 
     def save_state(self) -> None:
         import copy
@@ -186,7 +201,7 @@ class SceneManager:
         import copy
 
         self._state = copy.deepcopy(self._saved_state)
-        self._timeline = copy.deepcopy(getattr(self, '_saved_timeline', []))
+        self._timeline = copy.deepcopy(getattr(self, "_saved_timeline", []))
         return True
 
     def mark_rendered(self) -> None:
@@ -195,6 +210,11 @@ class SceneManager:
     @property
     def state(self) -> SceneState:
         return self._state
+
+    def _parse_add_sound_paths(self, code: str) -> list[str]:
+        import re
+
+        return re.findall(r"self\.add_sound\s*\(\s*'([^']+)'\s*\)", code)
 
     def get_audio_manifest(self) -> dict[str, Any]:
         music: list[dict[str, Any]] = []
@@ -220,6 +240,25 @@ class SceneManager:
                     music.append(entry)
                 else:
                     narration.append(entry)
+            elif event.kind == EventKind.CUSTOM_CODE:
+                for path in self._parse_add_sound_paths(event.data["code"]):
+                    is_music = any(
+                        kw in path.lower() for kw in ("classical", "rendered", "bgm")
+                    )
+                    kind = "music" if is_music else "narration"
+                    entry: dict[str, Any] = {
+                        "audio_id": "",
+                        "file_path": path,
+                        "text": "",
+                        "kind": kind,
+                        "volume": 0.3 if is_music else 1.0,
+                        "loop": is_music,
+                        "start_time": current_time,
+                    }
+                    if kind == "music":
+                        music.append(entry)
+                    else:
+                        narration.append(entry)
         return {
             "music": music,
             "narration": narration,
@@ -244,8 +283,10 @@ class SceneManager:
 
         if include_audio:
             for event in self._timeline:
-                if (event.kind == EventKind.AUDIO
-                        and event.data["record"].kind == "music"):
+                if (
+                    event.kind == EventKind.AUDIO
+                    and event.data["record"].kind == "music"
+                ):
                     path = event.data["record"].file_path.replace("\\", "/")
                     lines.append(f"{indent}self.add_sound('{path}')")
 
@@ -276,8 +317,12 @@ class SceneManager:
 
             elif event.kind == EventKind.CUSTOM_CODE:
                 for line in event.data["code"].split("\n"):
-                    if line.strip():
-                        lines.append(f"{indent}{line}")
+                    stripped = line.strip()
+                    if not stripped:
+                        continue
+                    if not include_audio and "self.add_sound(" in stripped:
+                        continue
+                    lines.append(f"{indent}{stripped}")
 
         lines.append("")
         return "\n".join(lines)
