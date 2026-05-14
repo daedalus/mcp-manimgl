@@ -23,5 +23,5 @@ jobs:
 
       - name: Publish to MCP Registry
         run: |
-          ./mcp-publisher login github-oidc
+          ./mcp-publisher login github-oidc --audience https://registry.modelcontextprotocol.io
           ./mcp-publisher publish
