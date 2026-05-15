@@ -251,7 +251,7 @@ def mix_audio(
             "-filter_complex",
             filter_complex,
             "-map",
-            "[0:v]",
+            "0:v",
             "-map",
             audio_out,
             "-c:v",
