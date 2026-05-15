@@ -5,6 +5,8 @@ import shutil
 import subprocess
 import sys
 import tempfile
+import threading
+import uuid
 from typing import TYPE_CHECKING, Any
 
 if TYPE_CHECKING:
@@ -15,6 +17,8 @@ class ManimAdapter:
     def __init__(self, scene_manager: SceneManager) -> None:
         self._scene_manager = scene_manager
         self._manim_available: bool | None = None
+        self._render_results: dict[str, dict[str, Any]] = {}
+        self._render_lock = threading.Lock()
 
     def check_manim_available(self) -> bool:
         if self._manim_available is not None:
@@ -39,6 +43,30 @@ class ManimAdapter:
     def render_scene(
         self, output_path: str | None = None, fmt: str = "mp4"
     ) -> dict[str, Any]:
+        render_id = uuid.uuid4().hex[:12]
+
+        with self._render_lock:
+            self._render_results[render_id] = {"status": "started"}
+
+        thread = threading.Thread(
+            target=self._do_render,
+            args=(render_id, output_path, fmt),
+            daemon=True,
+        )
+        thread.start()
+
+        return {
+            "render_id": render_id,
+            "status": "started",
+            "message": "Render started in background. Poll get_render_result() to check status.",
+        }
+
+    def _do_render(
+        self,
+        render_id: str,
+        output_path: str | None = None,
+        fmt: str = "mp4",
+    ) -> None:
         manifest = self._scene_manager.get_audio_manifest()
         has_audio = bool(manifest["music"]) or bool(manifest["narration"])
 
@@ -92,22 +120,7 @@ class ManimAdapter:
                                 actual_output = os.path.join(dirpath, fname)
                                 break
 
-                if has_audio and os.path.exists(actual_output):
-                    try:
-                        actual_output = self._mix_audio_to_video(
-                            actual_output, manifest
-                        )
-                    except Exception as exc:
-                        return {
-                            "success": True,
-                            "output_path": actual_output,
-                            "script_path": script_file,
-                            "mix_error": str(exc),
-                            "stdout": result.stdout,
-                            "stderr": result.stderr,
-                        }
-
-                return {
+                output_result: dict[str, Any] = {
                     "success": True,
                     "output_path": actual_output
                     if os.path.exists(actual_output)
@@ -117,28 +130,47 @@ class ManimAdapter:
                     "stderr": result.stderr,
                 }
 
-            return {
-                "success": False,
-                "output_path": None,
-                "script_path": script_file,
-                "error": result.stderr,
-                "stdout": result.stdout,
-            }
+                if has_audio and os.path.exists(actual_output):
+                    try:
+                        actual_output = self._mix_audio_to_video(
+                            actual_output, manifest
+                        )
+                        output_result["output_path"] = (
+                            actual_output if os.path.exists(actual_output) else None
+                        )
+                    except Exception as exc:
+                        output_result["mix_error"] = str(exc)
+
+                output_result["status"] = "completed"
+                with self._render_lock:
+                    self._render_results[render_id] = output_result
+            else:
+                with self._render_lock:
+                    self._render_results[render_id] = {
+                        "status": "failed",
+                        "error": result.stderr,
+                        "stdout": result.stdout,
+                        "script_path": script_file,
+                    }
 
         except subprocess.TimeoutExpired:
-            return {
-                "success": False,
-                "output_path": None,
-                "script_path": script_file,
-                "error": "Rendering timed out after 300 seconds",
-            }
+            with self._render_lock:
+                self._render_results[render_id] = {
+                    "status": "failed",
+                    "error": "Rendering timed out after 300 seconds",
+                    "script_path": script_file,
+                }
         except FileNotFoundError:
-            return {
-                "success": False,
-                "output_path": None,
-                "script_path": script_file,
-                "error": "manimgl binary not found. Is manimgl installed?",
-            }
+            with self._render_lock:
+                self._render_results[render_id] = {
+                    "status": "failed",
+                    "error": "manimgl binary not found. Is manimgl installed?",
+                    "script_path": script_file,
+                }
+
+    def get_render_result(self, render_id: str) -> dict[str, Any] | None:
+        with self._render_lock:
+            return self._render_results.get(render_id)
 
     def _mix_audio_to_video(self, video_path: str, manifest: dict[str, Any]) -> str:
         from mcp_manimgl.utils.audio_mixer import mix_audio

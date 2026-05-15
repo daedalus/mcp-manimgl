@@ -49,6 +49,7 @@ class AudioRecord:
     kind: str = "narration"
     volume: float = 1.0
     loop: bool = False
+    duration: float = 0.0
 
 
 @dataclass
@@ -314,15 +315,25 @@ class SceneManager:
                 audio_record: AudioRecord = event.data["record"]
                 path = audio_record.file_path.replace("\\", "/")
                 lines.append(f"{indent}self.add_sound('{path}')")
+                if audio_record.duration > 0:
+                    lines.append(f"{indent}self.wait({audio_record.duration})")
 
             elif event.kind == EventKind.CUSTOM_CODE:
-                for line in event.data["code"].split("\n"):
-                    stripped = line.strip()
-                    if not stripped:
+                code_block = event.data["code"]
+                code_lines = code_block.split("\n")
+                non_empty = [ln for ln in code_lines if ln.strip()]
+                base_indent = 0
+                if non_empty:
+                    base_indent = min(
+                        len(ln) - len(ln.lstrip()) for ln in non_empty
+                    )
+                for line in code_lines:
+                    if not line.strip():
                         continue
-                    if not include_audio and "self.add_sound(" in stripped:
+                    processed = line[base_indent:] if len(line) > base_indent else line.lstrip()
+                    if not include_audio and "self.add_sound(" in processed:
                         continue
-                    lines.append(f"{indent}{stripped}")
+                    lines.append(f"{indent}{processed}")
 
         lines.append("")
         return "\n".join(lines)

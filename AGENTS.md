@@ -64,3 +64,25 @@ Add to your `mcp.json`:
   }
 }
 ```
+
+## Development Server (with Auto-Reload)
+
+During development, start the server with `--reload` to automatically pick up source changes:
+
+```bash
+mcp-manimgl --reload
+```
+
+This uses `watchfiles` to monitor the src/ directory and restarts the server whenever a `.py` file changes. Install with:
+
+```bash
+pip install watchfiles
+```
+
+Without `--reload`, you must restart the server manually after editing source files (e.g., `audio_mixer.py`, `scene_manager.py`).
+
+## Known Bugs
+
+1. **Audio mixer double-bracket bug** (`src/mcp_manimgl/utils/audio_mixer.py`): ffmpeg filter labels include `[]` brackets, producing `[[label]]` syntax error. Fixed in source but requires server restart.
+2. **Custom code indentation stripping** (`src/mcp_manimgl/core/scene_manager.py`): `line.strip()` flattens all indentation. Fixed in source but requires server restart.
+3. **Narration timing misalignment**: The `get_audio_manifest()` start_times reflect event order, not visual section boundaries. Narrations overlap when mixed via manifest times. Fix: compute section-aligned delays manually via ffmpeg.

@@ -7,6 +7,26 @@ import tempfile
 from typing import Any
 
 
+def _serialize_narration_tracks(tracks: list[dict[str, Any]]) -> list[dict[str, Any]]:
+    """Ensure narration tracks do not overlap by shifting later tracks forward."""
+    if not tracks:
+        return tracks
+
+    sorted_tracks = sorted(tracks, key=lambda t: t.get("start_time", 0.0))
+    result: list[dict[str, Any]] = []
+    timeline_end = 0.0
+
+    for track in sorted_tracks:
+        dur = _get_audio_duration(track["file_path"])
+        start = track.get("start_time", 0.0)
+        if start < timeline_end:
+            start = timeline_end
+        result.append({**track, "start_time": start})
+        timeline_end = start + dur
+
+    return result
+
+
 def _get_audio_duration(path: str) -> float:
     result = subprocess.run(
         [
@@ -53,9 +73,7 @@ def _get_audio_channels(path: str) -> int:
     return 2
 
 
-def _preloop_audio(
-    source_path: str, target_duration: float
-) -> str:
+def _preloop_audio(source_path: str, target_duration: float) -> str:
     """Pre-loop an audio file to match target_duration using stream_loop."""
     looped = tempfile.NamedTemporaryFile(
         suffix=".wav", prefix="bgm_loop_", delete=False
@@ -146,6 +164,8 @@ def mix_audio(
         music_idx = 1
         input_labels.append("music")
 
+    narration_tracks = _serialize_narration_tracks(narration_tracks)
+
     for i, nt in enumerate(narration_tracks):
         inputs.append(nt["file_path"])
         input_labels.append(f"narration{i}")
@@ -156,8 +176,7 @@ def mix_audio(
     if music_path:
         dur_sec = video_duration + 2.0
         filter_parts.append(
-            f"[{music_idx}:a]volume={music_volume}"
-            f",atrim=duration={dur_sec}[music_trim]"
+            f"[{music_idx}:a]volume={music_volume},atrim=duration={dur_sec}[music_trim]"
         )
         filter_outputs.append("[music_trim]")
 
@@ -167,26 +186,25 @@ def mix_audio(
     for i, nt in enumerate(narration_tracks):
         idx = i + (1 if music_path else 0) + 1
         start_ms = int(nt.get("start_time", 0) * 1000)
-        label = f"[nar_delayed_{i}]"
         dur_ms = int(_get_audio_duration(nt["file_path"]) * 1000)
         channels = _get_audio_channels(nt["file_path"])
         adelay_arg = f"{start_ms}|{start_ms}" if channels > 1 else str(start_ms)
         filter_parts.append(
             f"[{idx}:a]adelay={adelay_arg}"
-            f",atrim=duration={dur_ms + start_ms}ms[{label}]"
+            f",atrim=duration={dur_ms + start_ms}ms[nar_delayed_{i}]"
         )
-        narration_mix_parts.append(label)
+        narration_mix_parts.append(f"nar_delayed_{i}")
         narration_mix_count += 1
 
     if narration_mix_count > 1:
-        inputs_str = "".join(narration_mix_parts)
+        inputs_str = "".join(f"[{l}]" for l in narration_mix_parts)
         filter_parts.append(
             f"{inputs_str}amix=inputs={narration_mix_count}"
             f":dropout_transition=2[narration_mix]"
         )
         narration_out = "[narration_mix]"
     elif narration_mix_count == 1:
-        narration_out = narration_mix_parts[0]
+        narration_out = f"[{narration_mix_parts[0]}]"
     else:
         narration_out = None
 
@@ -197,7 +215,7 @@ def mix_audio(
         duck_release = duck_params.get("release", 0.5)
 
         filter_parts.append(
-            f"[music_trim][{narration_out}]sidechaincompress="
+            f"[music_trim]{narration_out}sidechaincompress="
             f"threshold={duck_threshold}:ratio={duck_ratio}"
             f":attack={duck_attack}:release={duck_release}"
             f"[music_ducked]"

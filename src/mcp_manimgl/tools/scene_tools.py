@@ -2,13 +2,17 @@ from __future__ import annotations
 
 from typing import TYPE_CHECKING
 
+from mcp_manimgl.core.session_recorder import SessionRecorder, record_tool_call
+
 if TYPE_CHECKING:
     from fastmcp import FastMCP
 
     from mcp_manimgl.core import SceneManager
 
 
-def register_scene_tools(mcp: FastMCP, scene_manager: SceneManager) -> None:
+def register_scene_tools(
+    mcp: FastMCP, scene_manager: SceneManager, recorder: SessionRecorder
+) -> None:
     @mcp.tool()
     def create_scene(
         background_color: str = "#333333",
@@ -17,6 +21,9 @@ def register_scene_tools(mcp: FastMCP, scene_manager: SceneManager) -> None:
         frame_height: float = 8.0,
     ) -> dict:
         """Create a new manimgl scene with the given configuration.
+
+        IMPORTANT: Always use MCP tools for scene operations.
+        Do NOT write or execute standalone manim scripts.
 
         Args:
             background_color: Hex color or named color for the background.
@@ -42,11 +49,14 @@ def register_scene_tools(mcp: FastMCP, scene_manager: SceneManager) -> None:
 
         scene_manager.set_fps(fps)
         scene_manager.set_frame_height(frame_height)
+        record_tool_call(recorder, "create_scene")
         return scene_manager.get_info()
 
     @mcp.tool()
     def get_scene_info() -> dict:
         """Get the current scene's configuration and element counts.
+
+        IMPORTANT: Always use MCP tools for scene operations.
 
         Returns:
             Scene information including resolution, mobject/animation counts.
@@ -54,11 +64,14 @@ def register_scene_tools(mcp: FastMCP, scene_manager: SceneManager) -> None:
         Example:
             >>> get_scene_info()
         """
+        record_tool_call(recorder, "get_scene_info")
         return scene_manager.get_info()
 
     @mcp.tool()
     def clear_scene() -> bool:
         """Remove all mobjects and animations from the current scene.
+
+        IMPORTANT: Always use MCP tools for scene operations.
 
         Returns:
             True if successful.
@@ -67,11 +80,14 @@ def register_scene_tools(mcp: FastMCP, scene_manager: SceneManager) -> None:
             >>> clear_scene()
         """
         scene_manager.clear()
+        record_tool_call(recorder, "clear_scene")
         return True
 
     @mcp.tool()
     def add_wait(duration: float = 1.0) -> bool:
         """Add a wait/pause to the scene timeline.
+
+        IMPORTANT: Always use MCP tools for scene operations.
 
         Args:
             duration: Duration in seconds to wait.
@@ -83,11 +99,14 @@ def register_scene_tools(mcp: FastMCP, scene_manager: SceneManager) -> None:
             >>> add_wait(2.0)
         """
         scene_manager.add_wait(duration)
+        record_tool_call(recorder, "add_wait")
         return True
 
     @mcp.tool()
     def save_state() -> bool:
         """Save the current scene state for later restoration.
+
+        IMPORTANT: Always use MCP tools for scene operations.
 
         Returns:
             True if state was saved.
@@ -96,11 +115,14 @@ def register_scene_tools(mcp: FastMCP, scene_manager: SceneManager) -> None:
             >>> save_state()
         """
         scene_manager.save_state()
+        record_tool_call(recorder, "save_state")
         return True
 
     @mcp.tool()
     def restore_state() -> bool:
         """Restore the scene to a previously saved state.
+
+        IMPORTANT: Always use MCP tools for scene operations.
 
         Returns:
             True if state was restored, False if no saved state exists.
@@ -108,7 +130,9 @@ def register_scene_tools(mcp: FastMCP, scene_manager: SceneManager) -> None:
         Example:
             >>> restore_state()
         """
-        return scene_manager.restore_state()
+        result = scene_manager.restore_state()
+        record_tool_call(recorder, "restore_state")
+        return result
 
     @mcp.tool()
     def set_camera(
@@ -116,6 +140,8 @@ def register_scene_tools(mcp: FastMCP, scene_manager: SceneManager) -> None:
         orientation: list[float] | None = None,
     ) -> bool:
         """Configure the camera position and/or orientation.
+
+        IMPORTANT: Always use MCP tools for scene operations.
 
         Args:
             position: Camera position [x, y, z] in 3D space.
@@ -128,11 +154,14 @@ def register_scene_tools(mcp: FastMCP, scene_manager: SceneManager) -> None:
             >>> set_camera([0, 0, -5], [0, 0, 0])
         """
         scene_manager.set_camera(position, orientation)
+        record_tool_call(recorder, "set_camera")
         return True
 
     @mcp.tool()
     def set_config(config: dict) -> bool:
         """Set global rendering configuration parameters.
+
+        IMPORTANT: Always use MCP tools for scene operations.
 
         Args:
             config: Dictionary with configuration options. Supported keys:
@@ -156,6 +185,7 @@ def register_scene_tools(mcp: FastMCP, scene_manager: SceneManager) -> None:
             scene_manager.set_fps(int(config["fps"]))
         if "frame_height" in config:
             scene_manager.set_frame_height(float(config["frame_height"]))
+        record_tool_call(recorder, "set_config")
         return True
 
     @mcp.tool()
@@ -164,6 +194,9 @@ def register_scene_tools(mcp: FastMCP, scene_manager: SceneManager) -> None:
 
         The code will be inserted inside the construct() method body.
         Use this for advanced manim functionality not covered by other tools.
+
+        IMPORTANT: Always use MCP tools for scene operations.
+        Do NOT write or execute standalone manim scripts.
 
         Args:
             code_snippet: Valid Python code to insert in the scene's construct().
@@ -175,11 +208,16 @@ def register_scene_tools(mcp: FastMCP, scene_manager: SceneManager) -> None:
             >>> add_custom_code("self.camera.rotate(2 * PI / 3)")
         """
         scene_manager.add_custom_code(code_snippet)
+        record_tool_call(recorder, "add_custom_code")
         return True
 
     @mcp.tool()
     def generate_scene_script() -> str:
         """Generate the full Python script for the current scene.
+
+        IMPORTANT: Always use MCP tools for scene operations.
+        Do NOT write or execute standalone manim scripts. Use render_scene()
+        and get_render_result() for rendering instead.
 
         Returns:
             The complete Python script as a string.
@@ -187,4 +225,5 @@ def register_scene_tools(mcp: FastMCP, scene_manager: SceneManager) -> None:
         Example:
             >>> generate_scene_script()
         """
+        record_tool_call(recorder, "generate_scene_script")
         return scene_manager.generate_script()

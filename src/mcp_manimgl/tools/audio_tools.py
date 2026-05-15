@@ -4,13 +4,17 @@ import os
 import uuid
 from typing import TYPE_CHECKING
 
+from mcp_manimgl.core.session_recorder import SessionRecorder, record_tool_call
+
 if TYPE_CHECKING:
     from fastmcp import FastMCP
 
     from mcp_manimgl.core import SceneManager
 
 
-def register_audio_tools(mcp: FastMCP, scene_manager: SceneManager) -> None:
+def register_audio_tools(
+    mcp: FastMCP, scene_manager: SceneManager, recorder: SessionRecorder
+) -> None:
     @mcp.tool()
     def add_narration(
         text: str,
@@ -20,6 +24,8 @@ def register_audio_tools(mcp: FastMCP, scene_manager: SceneManager) -> None:
 
         The audio plays at the point in the timeline where this tool is called.
         Uses Google TTS (gTTS) for voice synthesis.
+
+        IMPORTANT: Always use MCP tools for scene operations.
 
         Args:
             text: The text to be spoken in the narration.
@@ -41,9 +47,8 @@ def register_audio_tools(mcp: FastMCP, scene_manager: SceneManager) -> None:
             }
 
         audio_id = f"audio_{uuid.uuid4().hex[:8]}"
-        audio_dir = os.path.join(
-            os.path.dirname(os.path.abspath(__file__)), "..", "..", "..", "audio"
-        )
+        from mcp_manimgl import MCP_MANIMGL_WORKDIR
+        audio_dir = os.path.join(MCP_MANIMGL_WORKDIR, "audio")
         os.makedirs(audio_dir, exist_ok=True)
         file_path = os.path.join(audio_dir, f"{audio_id}.mp3")
 
@@ -58,13 +63,42 @@ def register_audio_tools(mcp: FastMCP, scene_manager: SceneManager) -> None:
 
         from mcp_manimgl.core.scene_manager import AudioRecord
 
+        duration = 0.0
+        try:
+            import json
+            import subprocess
+
+            result = subprocess.run(
+                [
+                    "ffprobe",
+                    "-v",
+                    "quiet",
+                    "-print_format",
+                    "json",
+                    "-show_streams",
+                    str(os.path.abspath(file_path)),
+                ],
+                capture_output=True,
+                text=True,
+                timeout=15,
+            )
+            data = json.loads(result.stdout)
+            for stream in data.get("streams", []):
+                dur = stream.get("duration")
+                if dur:
+                    duration = float(dur)
+                    break
+        except Exception:
+            pass
+
         record = AudioRecord(
             audio_id=audio_id,
             file_path=os.path.abspath(file_path),
             text=text,
+            duration=duration,
         )
         scene_manager.add_audio(record)
-
+        record_tool_call(recorder, "add_narration")
         return {
             "success": True,
             "audio_id": audio_id,
@@ -91,6 +125,8 @@ def register_audio_tools(mcp: FastMCP, scene_manager: SceneManager) -> None:
         When narration tracks are also present, the music volume auto-ducks
         during narration via sidechain compression in post-processing.
 
+        IMPORTANT: Always use MCP tools for scene operations.
+
         Args:
             file_path: Path to an audio file or MIDI file.
             volume: Playback volume 0.0-1.0 (default: 0.3).
@@ -116,9 +152,8 @@ def register_audio_tools(mcp: FastMCP, scene_manager: SceneManager) -> None:
             }
 
         audio_id = f"bgm_{uuid.uuid4().hex[:8]}"
-        audio_dir = os.path.join(
-            os.path.dirname(os.path.abspath(__file__)), "..", "..", "..", "audio"
-        )
+        from mcp_manimgl import MCP_MANIMGL_WORKDIR
+        audio_dir = os.path.join(MCP_MANIMGL_WORKDIR, "audio")
         os.makedirs(audio_dir, exist_ok=True)
 
         is_midi = file_path.lower().endswith((".mid", ".midi"))
@@ -170,7 +205,7 @@ def register_audio_tools(mcp: FastMCP, scene_manager: SceneManager) -> None:
             "release": duck_release,
         }
         scene_manager.set_music_duck_params(duck_params)
-
+        record_tool_call(recorder, "add_background_music")
         return {
             "success": True,
             "audio_id": audio_id,
