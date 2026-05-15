@@ -45,7 +45,7 @@ def build_server(
         missing = check_non_python_deps()
         return {
             "server": "mcp-manimgl",
-            "description": "Manim OpenGL animation server. ALWAYS use the MCP tools for all scene operations. Do NOT write standalone Python scripts or execute subprocess commands for scene building, rendering, or animation tasks.",
+            "description": "Manim OpenGL animation server. ALWAYS use the MCP tools for all scene operations. Do NOT write standalone Python scripts or execute subprocess commands for scene building, rendering, or animation tasks. ALWAYS maintain TODOs to track progress on complex tasks.",
             "version": "0.1.1",
             "session_path": recorder.path,
             "dependencies": {
