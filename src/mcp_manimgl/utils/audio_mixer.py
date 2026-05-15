@@ -189,8 +189,9 @@ def mix_audio(
         dur_ms = int(get_audio_duration(nt["file_path"]) * 1000)
         channels = get_audio_channels(nt["file_path"])
         adelay_arg = f"{start_ms}|{start_ms}" if channels > 1 else str(start_ms)
+        narration_volume = nt.get("volume", 1.0)
         filter_parts.append(
-            f"[{idx}:a]adelay={adelay_arg}"
+            f"[{idx}:a]volume={narration_volume},adelay={adelay_arg}"
             f",atrim=duration={dur_ms + start_ms}ms[nar_delayed_{i}]"
         )
         narration_mix_parts.append(f"nar_delayed_{i}")
@@ -202,11 +203,21 @@ def mix_audio(
             f"{inputs_str}amix=inputs={narration_mix_count}"
             f":dropout_transition=2[narration_mix]"
         )
-        narration_out = "[narration_mix]"
+        filter_parts.append(
+            "[narration_mix]asplit=2[nar_raw][nar_for_duck]"
+        )
+        narration_out = "[nar_raw]"
+        narration_duck_ref = "[nar_for_duck]"
     elif narration_mix_count == 1:
-        narration_out = f"[{narration_mix_parts[0]}]"
+        single_label = f"[{narration_mix_parts[0]}]"
+        filter_parts.append(
+            f"{single_label}asplit=2[nar_raw][nar_for_duck]"
+        )
+        narration_out = "[nar_raw]"
+        narration_duck_ref = "[nar_for_duck]"
     else:
         narration_out = None
+        narration_duck_ref = None
 
     if music_path and narration_out:
         duck_threshold = duck_params.get("threshold", "-24dB")
@@ -215,14 +226,14 @@ def mix_audio(
         duck_release = duck_params.get("release", 0.5)
 
         filter_parts.append(
-            f"[music_trim]{narration_out}sidechaincompress="
+            f"[music_trim]{narration_duck_ref}sidechaincompress="
             f"threshold={duck_threshold}:ratio={duck_ratio}"
             f":attack={duck_attack}:release={duck_release}"
             f"[music_ducked]"
         )
 
         filter_parts.append(
-            "[narration_mix][music_ducked]amix=inputs=2:weights=1 0.7[final_audio]"
+            f"{narration_out}[music_ducked]amix=inputs=2:weights=1 0.7[final_audio]"
         )
         audio_out = "[final_audio]"
     elif music_path:

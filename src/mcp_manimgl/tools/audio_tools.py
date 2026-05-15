@@ -109,7 +109,7 @@ def register_audio_tools(
     @mcp.tool()
     def add_background_music(
         file_path: str,
-        volume: float = 0.3,
+        volume: float = 0.2,
         loop: bool = False,
         duck_threshold: str = "-24dB",
         duck_ratio: float = 4.0,
