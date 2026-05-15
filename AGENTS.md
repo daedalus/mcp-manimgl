@@ -11,7 +11,7 @@ MCP server that exposes manimgl (Manim OpenGL) functionality as tools for LLMs. 
 | `pytest` | Run test suite |
 | `ruff format` | Format code |
 | `prospector --with-tool ruff --with-tool mypy src/` | Lint + type check |
-| `semgrep --config=auto src/` | Security and pattern scanning |
+| `semgrep --config=auto src/` | Security and pattern scanning (install separately: `pip install semgrep`) |
 | `vulture --min-confidence 90 src/` | Dead/unused code detection |
 
 ## Development
@@ -21,7 +21,7 @@ pip install -e ".[test]"
 pytest
 ruff format src/ tests/
 prospector --with-tool ruff --with-tool mypy src/
-semgrep --config=auto --severity=ERROR src/
+pip install semgrep && semgrep --config=auto --severity=ERROR src/  # semgrep not included in [lint] due to mcp version conflict
 vulture --min-confidence 90 src/
 ```
 
