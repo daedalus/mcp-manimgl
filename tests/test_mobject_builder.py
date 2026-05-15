@@ -166,3 +166,6 @@ class TestMobjectBuilder:
     def test_position_string_2d(self) -> None:
         result = MobjectBuilder._position_str([1.0, 2.0])
         assert "0.0" in result  # z should be 0.0
+
+    def test_resolve_color(self) -> None:
+        assert MobjectBuilder._resolve_color("#FF0000") == "#FF0000"

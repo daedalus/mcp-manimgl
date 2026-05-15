@@ -54,6 +54,7 @@ class AudioRecord:
 
 @dataclass
 class SceneState:
+    scene_id: str = ""
     background_color: str = "#333333"
     resolution: tuple[int, int] = (1280, 720)
     fps: int = 30
@@ -69,9 +70,13 @@ class SceneState:
     has_rendered: bool = False
     music_duck_params: dict[str, Any] | None = None
 
+    def __post_init__(self) -> None:
+        if not self.scene_id:
+            self.scene_id = str(uuid.uuid4())[:8]
+
     def to_dict(self) -> dict[str, Any]:
         return {
-            "scene_id": str(uuid.uuid4())[:8],
+            "scene_id": self.scene_id,
             "background_color": self.background_color,
             "resolution": list(self.resolution),
             "fps": self.fps,
@@ -199,6 +204,15 @@ class SceneManager:
             rest = all_mobs[:i] + all_mobs[i + 1:]
             overlaps.extend(self._check_overlaps_for(all_mobs[i], rest))
         return overlaps
+
+    def check_mobject_overlaps(
+        self, mobject_id: str
+    ) -> list[dict[str, Any]]:
+        mob = self.get_mobject(mobject_id)
+        if mob is None:
+            return []
+        others = [m for m in self._state.mobjects if m.mobject_id != mobject_id]
+        return self._check_overlaps_for(mob, others)
 
     def get_mobject(self, mobject_id: str) -> MobjectRecord | None:
         for m in self._state.mobjects:

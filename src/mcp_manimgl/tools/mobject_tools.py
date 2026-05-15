@@ -346,17 +346,22 @@ def register_mobject_tools(
         mobject_id: str,
         position: list[float],
         aligned_edge: str | None = None,
-    ) -> bool:
+    ) -> dict:
         record = scene_manager.get_mobject(mobject_id)
         if record is None:
             record_tool_call(recorder, "move_to")
-            return False
+            return {"success": False}
         record.position = position
         pos = MobjectBuilder._position_str(position)
         edge = f", aligned_edge={aligned_edge}" if aligned_edge else ""
         record.code_snippet += f"\n{record.mobject_id}.move_to({pos}{edge})"
+        overlaps = scene_manager.check_mobject_overlaps(mobject_id)
         record_tool_call(recorder, "move_to")
-        return True
+        return {
+            "success": True,
+            "position": record.position,
+            "overlaps": overlaps or None,
+        }
 
     @mcp.tool()
     def shift(mobject_id: str, vector: list[float]) -> bool:

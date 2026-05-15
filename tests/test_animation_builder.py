@@ -91,6 +91,19 @@ class TestAnimationBuilder:
         assert "MoveAlongPath" in record.code_snippet
         assert "Line(ORIGIN" in record.code_snippet
 
+    def test_move_along_path_unknown_type(self) -> None:
+        record = AnimationBuilder.animate_move_along_path(
+            "m1",
+            "unknown_path",
+            {},
+            2.0,
+        )
+        assert "MoveAlongPath" in record.code_snippet
+        assert "unknown_path" in record.code_snippet
+
+    def test_rate_func_str(self) -> None:
+        assert AnimationBuilder._rate_func_str("smooth") == "smooth"
+
     def test_group(self) -> None:
         record = AnimationBuilder.animate_group(
             [
