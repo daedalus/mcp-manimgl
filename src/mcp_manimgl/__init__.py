@@ -1,6 +1,6 @@
 import os
 
-__version__ = "0.1.1"
+__version__ = "0.1.2"
 __all__: list[str] = []
 
 MCP_MANIMGL_WORKDIR = os.environ.get(
