@@ -17,6 +17,30 @@ def register_audio_tools(
     mcp: FastMCP, scene_manager: SceneManager, recorder: SessionRecorder
 ) -> None:
     @mcp.tool()
+    def audio_duration(file_path: str) -> dict:
+        """Get the duration of any audio file in seconds.
+
+        Accepts audio files (.mp3, .wav, .ogg, .mid) created by the server.
+        Uses ffprobe internally.
+
+        Args:
+            file_path: Path to the audio file.
+
+        Returns:
+            Dictionary with the duration in seconds.
+
+        Example:
+            >>> audio_duration("/tmp/mcp_manimgl/audio/audio_abc123.mp3")
+        """
+        if not os.path.exists(file_path):
+            return {"success": False, "error": f"File not found: {file_path}"}
+        try:
+            duration = get_audio_duration(file_path)
+            return {"success": True, "file_path": file_path, "duration": duration}
+        except Exception as exc:
+            return {"success": False, "error": str(exc)}
+
+    @mcp.tool()
     def add_narration(
         text: str,
         lang: str = "en",
