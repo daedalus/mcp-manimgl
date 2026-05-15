@@ -21,6 +21,14 @@ def register_rendering_tools(
         Returns a render_id immediately. Poll get_render_result() with
         that render_id to check completion and get the output path.
 
+        POLLING PROTOCOL: Use exponential backoff when polling:
+          - 1st call: sleep 1s, then call get_render_result()
+          - 2nd call: sleep 2s, then call
+          - 3rd call: sleep 4s
+          - Nth call: sleep min(2^(N-1), 30)s
+          Reset the backoff once the render completes or fails.
+        Use verify_video() on the output to inspect the result.
+
         IMPORTANT: Always use this MCP tool for rendering. Do NOT write
         or execute standalone manim scripts for scene operations.
 
@@ -43,7 +51,9 @@ def register_rendering_tools(
         """Poll for the result of an async render started by render_scene().
 
         Returns the render result dict when done, or a "still running" status.
-        Keep polling every 5-10 seconds until status is "completed" or "failed".
+        Keep polling until status is "completed" or "failed". The caller
+        should use exponential backoff between polls: 1s, 2s, 4s, 8s...
+        (cap at 30s). The count resets when the render completes or fails.
 
         IMPORTANT: Always use this MCP tool for scene operations. Do NOT write
         or execute standalone manim scripts.
@@ -98,3 +108,27 @@ def register_rendering_tools(
         """
         record_tool_call(recorder, "get_render_status")
         return adapter.get_status()
+
+    @mcp.tool()
+    def verify_video(
+        video_path: str,
+    ) -> dict:
+        """Inspect a rendered video file and return its technical properties.
+
+        Uses ffprobe to extract codec info, streams, duration, resolution,
+        and bitrate. Verifies the file exists and has both video and audio.
+
+        IMPORTANT: Always use this MCP tool for scene operations. Do NOT write
+        or execute standalone manim scripts.
+
+        Args:
+            video_path: Path to the video file to inspect.
+
+        Returns:
+            Dictionary with stream info, duration, resolution, and codecs.
+
+        Example:
+            >>> verify_video("/tmp/animation.mp4")
+        """
+        record_tool_call(recorder, "verify_video")
+        return adapter.verify_video(video_path)

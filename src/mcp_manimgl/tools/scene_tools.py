@@ -212,6 +212,30 @@ def register_scene_tools(
         return True
 
     @mcp.tool()
+    def verify_scene_overlaps() -> list[dict]:
+        """Detect overlapping visual elements (mobjects) in the current scene.
+
+        Computes axis-aligned bounding boxes for each mobject based on its
+        stored position and dimension properties (radius, width, height,
+        side_length, font_size). Reports any pair whose bounding boxes
+        intersect.
+
+        NOTE: Positions are only reliably updated by move_to(). After
+        shift/scale/rotate/next_to/align_to, the stored position may be
+        stale. Text and TeX dimensions are estimated from font_size and
+        character count — actual rendered glyphs may differ.
+
+        Returns:
+            List of overlap reports, each with the pair of overlapping
+            mobjects, their positions, types, and overlap magnitudes.
+
+        Example:
+            >>> verify_scene_overlaps()
+        """
+        record_tool_call(recorder, "verify_scene_overlaps")
+        return scene_manager.check_overlaps()
+
+    @mcp.tool()
     def generate_scene_script() -> str:
         """Generate the full Python script for the current scene.
 

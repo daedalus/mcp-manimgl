@@ -25,13 +25,14 @@ def register_mobject_tools(
         record = MobjectBuilder.add_circle(
             radius, color, fill_opacity, stroke_width, position
         )
-        scene_manager.add_mobject(record)
+        overlaps = scene_manager.add_mobject(record)
         record_tool_call(recorder, "add_circle")
         return {
             "mobject_id": record.mobject_id,
             "mobject_type": record.mobject_type,
             "color": record.color,
             "position": record.position,
+            "overlaps": overlaps or None,
         }
 
     @mcp.tool()
@@ -45,13 +46,14 @@ def register_mobject_tools(
         record = MobjectBuilder.add_square(
             side_length, color, fill_opacity, stroke_width, position
         )
-        scene_manager.add_mobject(record)
+        overlaps = scene_manager.add_mobject(record)
         record_tool_call(recorder, "add_square")
         return {
             "mobject_id": record.mobject_id,
             "mobject_type": record.mobject_type,
             "color": record.color,
             "position": record.position,
+            "overlaps": overlaps or None,
         }
 
     @mcp.tool()
@@ -66,13 +68,14 @@ def register_mobject_tools(
         record = MobjectBuilder.add_rectangle(
             width, height, color, fill_opacity, stroke_width, position
         )
-        scene_manager.add_mobject(record)
+        overlaps = scene_manager.add_mobject(record)
         record_tool_call(recorder, "add_rectangle")
         return {
             "mobject_id": record.mobject_id,
             "mobject_type": record.mobject_type,
             "color": record.color,
             "position": record.position,
+            "overlaps": overlaps or None,
         }
 
     @mcp.tool()
@@ -83,12 +86,13 @@ def register_mobject_tools(
         stroke_width: float = 4.0,
     ) -> dict:
         record = MobjectBuilder.add_polygon(vertices, color, fill_opacity, stroke_width)
-        scene_manager.add_mobject(record)
+        overlaps = scene_manager.add_mobject(record)
         record_tool_call(recorder, "add_polygon")
         return {
             "mobject_id": record.mobject_id,
             "mobject_type": record.mobject_type,
             "color": record.color,
+            "overlaps": overlaps or None,
         }
 
     @mcp.tool()
@@ -99,12 +103,13 @@ def register_mobject_tools(
         stroke_width: float = 4.0,
     ) -> dict:
         record = MobjectBuilder.add_line(start, end, color, stroke_width)
-        scene_manager.add_mobject(record)
+        overlaps = scene_manager.add_mobject(record)
         record_tool_call(recorder, "add_line")
         return {
             "mobject_id": record.mobject_id,
             "mobject_type": record.mobject_type,
             "color": record.color,
+            "overlaps": overlaps or None,
         }
 
     @mcp.tool()
@@ -115,12 +120,13 @@ def register_mobject_tools(
         stroke_width: float = 4.0,
     ) -> dict:
         record = MobjectBuilder.add_arrow(start, end, color, stroke_width)
-        scene_manager.add_mobject(record)
+        overlaps = scene_manager.add_mobject(record)
         record_tool_call(recorder, "add_arrow")
         return {
             "mobject_id": record.mobject_id,
             "mobject_type": record.mobject_type,
             "color": record.color,
+            "overlaps": overlaps or None,
         }
 
     @mcp.tool()
@@ -130,13 +136,14 @@ def register_mobject_tools(
         radius: float = 0.1,
     ) -> dict:
         record = MobjectBuilder.add_dot(point, color, radius)
-        scene_manager.add_mobject(record)
+        overlaps = scene_manager.add_mobject(record)
         record_tool_call(recorder, "add_dot")
         return {
             "mobject_id": record.mobject_id,
             "mobject_type": record.mobject_type,
             "color": record.color,
             "position": record.position,
+            "overlaps": overlaps or None,
         }
 
     @mcp.tool()
@@ -147,12 +154,13 @@ def register_mobject_tools(
         font: str = "Consolas",
     ) -> dict:
         record = MobjectBuilder.add_text(text, font_size, color, font)
-        scene_manager.add_mobject(record)
+        overlaps = scene_manager.add_mobject(record)
         record_tool_call(recorder, "add_text")
         return {
             "mobject_id": record.mobject_id,
             "mobject_type": record.mobject_type,
             "color": record.color,
+            "overlaps": overlaps or None,
         }
 
     @mcp.tool()
@@ -162,12 +170,13 @@ def register_mobject_tools(
         color: str = "#FFFFFF",
     ) -> dict:
         record = MobjectBuilder.add_tex(tex_string, font_size, color)
-        scene_manager.add_mobject(record)
+        overlaps = scene_manager.add_mobject(record)
         record_tool_call(recorder, "add_tex")
         return {
             "mobject_id": record.mobject_id,
             "mobject_type": record.mobject_type,
             "color": record.color,
+            "overlaps": overlaps or None,
         }
 
     @mcp.tool()
@@ -177,12 +186,13 @@ def register_mobject_tools(
         color: str = "#FFFF00",
     ) -> dict:
         record = MobjectBuilder.add_function_graph(function, x_range, color)
-        scene_manager.add_mobject(record)
+        overlaps = scene_manager.add_mobject(record)
         record_tool_call(recorder, "add_function_graph")
         return {
             "mobject_id": record.mobject_id,
             "mobject_type": record.mobject_type,
             "color": record.color,
+            "overlaps": overlaps or None,
         }
 
     @mcp.tool()
@@ -192,12 +202,13 @@ def register_mobject_tools(
         color: str = "#FFFFFF",
     ) -> dict:
         record = MobjectBuilder.add_parametric_curve(function, t_range, color)
-        scene_manager.add_mobject(record)
+        overlaps = scene_manager.add_mobject(record)
         record_tool_call(recorder, "add_parametric_curve")
         return {
             "mobject_id": record.mobject_id,
             "mobject_type": record.mobject_type,
             "color": record.color,
+            "overlaps": overlaps or None,
         }
 
     @mcp.tool()
@@ -207,11 +218,12 @@ def register_mobject_tools(
         axis_config: dict | None = None,
     ) -> dict:
         record = MobjectBuilder.add_coordinate_system(x_range, y_range, axis_config)
-        scene_manager.add_mobject(record)
+        overlaps = scene_manager.add_mobject(record)
         record_tool_call(recorder, "add_coordinate_system")
         return {
             "mobject_id": record.mobject_id,
             "mobject_type": record.mobject_type,
+            "overlaps": overlaps or None,
         }
 
     @mcp.tool()
@@ -220,12 +232,13 @@ def register_mobject_tools(
         color: str = "#FFFFFF",
     ) -> dict:
         record = MobjectBuilder.add_vector(vector, color)
-        scene_manager.add_mobject(record)
+        overlaps = scene_manager.add_mobject(record)
         record_tool_call(recorder, "add_vector")
         return {
             "mobject_id": record.mobject_id,
             "mobject_type": record.mobject_type,
             "color": record.color,
+            "overlaps": overlaps or None,
         }
 
     @mcp.tool()
@@ -236,13 +249,14 @@ def register_mobject_tools(
         dot_radius: float = 0.1,
     ) -> dict:
         record = MobjectBuilder.add_labeled_point(label, point, color, dot_radius)
-        scene_manager.add_mobject(record)
+        overlaps = scene_manager.add_mobject(record)
         record_tool_call(recorder, "add_labeled_point")
         return {
             "mobject_id": record.mobject_id,
             "mobject_type": record.mobject_type,
             "color": record.color,
             "position": record.position,
+            "overlaps": overlaps or None,
         }
 
     @mcp.tool()
@@ -255,12 +269,13 @@ def register_mobject_tools(
         record = MobjectBuilder.add_3d_object(
             object_type, color, fill_opacity, properties
         )
-        scene_manager.add_mobject(record)
+        overlaps = scene_manager.add_mobject(record)
         record_tool_call(recorder, "add_3d_object")
         return {
             "mobject_id": record.mobject_id,
             "mobject_type": record.mobject_type,
             "color": record.color,
+            "overlaps": overlaps or None,
         }
 
     @mcp.tool()
@@ -271,12 +286,13 @@ def register_mobject_tools(
         label: str | None = None,
     ) -> dict:
         record = MobjectBuilder.add_brace(mobject_id, direction, color, label)
-        scene_manager.add_mobject(record)
+        overlaps = scene_manager.add_mobject(record)
         record_tool_call(recorder, "add_brace")
         return {
             "mobject_id": record.mobject_id,
             "mobject_type": record.mobject_type,
             "color": record.color,
+            "overlaps": overlaps or None,
         }
 
     @mcp.tool()
@@ -285,12 +301,13 @@ def register_mobject_tools(
         color: str = "#FFFFFF",
     ) -> dict:
         record = MobjectBuilder.add_number_line(x_range, color)
-        scene_manager.add_mobject(record)
+        overlaps = scene_manager.add_mobject(record)
         record_tool_call(recorder, "add_number_line")
         return {
             "mobject_id": record.mobject_id,
             "mobject_type": record.mobject_type,
             "color": record.color,
+            "overlaps": overlaps or None,
         }
 
     @mcp.tool()
@@ -300,12 +317,13 @@ def register_mobject_tools(
         font_size: float = 48,
     ) -> dict:
         record = MobjectBuilder.add_decimal_number(value, color, font_size)
-        scene_manager.add_mobject(record)
+        overlaps = scene_manager.add_mobject(record)
         record_tool_call(recorder, "add_decimal_number")
         return {
             "mobject_id": record.mobject_id,
             "mobject_type": record.mobject_type,
             "color": record.color,
+            "overlaps": overlaps or None,
         }
 
     @mcp.tool()
@@ -314,12 +332,13 @@ def register_mobject_tools(
         color: str = "#FFFFFF",
     ) -> dict:
         record = MobjectBuilder.add_matrix(rows, color)
-        scene_manager.add_mobject(record)
+        overlaps = scene_manager.add_mobject(record)
         record_tool_call(recorder, "add_matrix")
         return {
             "mobject_id": record.mobject_id,
             "mobject_type": record.mobject_type,
             "color": record.color,
+            "overlaps": overlaps or None,
         }
 
     @mcp.tool()

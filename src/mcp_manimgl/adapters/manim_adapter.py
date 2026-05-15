@@ -269,6 +269,63 @@ class ManimAdapter:
                 "error": "Frame rendering timed out after 120 seconds",
             }
 
+    def verify_video(self, video_path: str) -> dict[str, Any]:
+        if not os.path.exists(video_path):
+            return {"success": False, "error": "File not found"}
+        try:
+            result = subprocess.run(
+                [
+                    "ffprobe",
+                    "-v", "quiet",
+                    "-print_format", "json",
+                    "-show_format",
+                    "-show_streams",
+                    video_path,
+                ],
+                capture_output=True, text=True, timeout=30,
+            )
+            if result.returncode != 0:
+                return {"success": False, "error": result.stderr}
+            import json
+            info = json.loads(result.stdout)
+            streams = info.get("streams", [])
+            fmt = info.get("format", {})
+            video_streams = [s for s in streams if s["codec_type"] == "video"]
+            audio_streams = [s for s in streams if s["codec_type"] == "audio"]
+            return {
+                "success": True,
+                "file_path": video_path,
+                "size_bytes": int(fmt.get("size", 0)),
+                "duration_sec": float(fmt.get("duration", 0)),
+                "bit_rate": int(fmt.get("bit_rate", 0)),
+                "video": [
+                    {
+                        "codec": s.get("codec_name"),
+                        "width": s.get("width"),
+                        "height": s.get("height"),
+                        "fps": float(
+                            __import__("fractions").Fraction(
+                                s.get("r_frame_rate", "0/1")
+                            )
+                        ),
+                    }
+                    for s in video_streams
+                ],
+                "audio": [
+                    {
+                        "codec": s.get("codec_name"),
+                        "sample_rate": int(s.get("sample_rate", 0)),
+                        "channels": int(s.get("channels", 0)),
+                    }
+                    for s in audio_streams
+                ],
+                "stream_count": len(streams),
+            }
+        except subprocess.TimeoutExpired:
+            return {"success": False, "error": "ffprobe timed out"}
+        except json.JSONDecodeError:
+            return {"success": False, "error": "Failed to parse ffprobe output"}
+
     def get_status(self) -> dict[str, bool]:
         return {
             "manim_available": self.check_manim_available(),

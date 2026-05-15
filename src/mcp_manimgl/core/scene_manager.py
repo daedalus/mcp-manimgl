@@ -124,7 +124,8 @@ class SceneManager:
         if orientation is not None:
             self._state.camera_orientation = orientation
 
-    def add_mobject(self, record: MobjectRecord) -> None:
+    def add_mobject(self, record: MobjectRecord) -> list[dict[str, Any]]:
+        overlaps = self._check_overlaps_for(record, self._state.mobjects)
         self._state.mobjects.append(record)
         self._timeline.append(
             TimelineEvent(
@@ -132,6 +133,72 @@ class SceneManager:
                 data={"record": record},
             )
         )
+        return overlaps
+
+    def _half_extents(self, m: MobjectRecord) -> tuple[float, float] | None:
+        p = m.properties
+        mt = m.mobject_type
+        if mt == "circle":
+            r = p.get("radius", 1.0)
+            return (r, r)
+        if mt == "square":
+            s = p.get("side_length", 2.0)
+            return (s / 2, s / 2)
+        if mt == "rectangle":
+            w = p.get("width", 4.0)
+            h = p.get("height", 2.0)
+            return (w / 2, h / 2)
+        if mt == "dot":
+            r = p.get("radius", 0.1)
+            return (r, r)
+        if mt in ("text", "tex"):
+            fs = p.get("font_size", 48)
+            char_units = fs / 48.0
+            text_len = len(p.get("text", p.get("tex_string", "")))
+            w = char_units * min(text_len * 0.6, 12)
+            h = char_units * 1.2
+            return (w / 2, h / 2)
+        return None
+
+    def _check_overlaps_for(
+        self, new_mob: MobjectRecord, existing: list[MobjectRecord]
+    ) -> list[dict[str, Any]]:
+        note = "position may be stale after shift/scale/rotate/next_to/align_to"
+        overlaps: list[dict[str, Any]] = []
+        hn = self._half_extents(new_mob)
+        if hn is None:
+            return overlaps
+        nx, ny = new_mob.position[0], new_mob.position[1]
+        for other in existing:
+            ho = self._half_extents(other)
+            if ho is None:
+                continue
+            ox, oy = other.position[0], other.position[1]
+            dx = abs(nx - ox)
+            dy = abs(ny - oy)
+            if dx < (hn[0] + ho[0]) and dy < (hn[1] + ho[1]):
+                overlaps.append({
+                    "new_id": new_mob.mobject_id,
+                    "new_type": new_mob.mobject_type,
+                    "new_pos": new_mob.position,
+                    "with_id": other.mobject_id,
+                    "with_type": other.mobject_type,
+                    "with_pos": other.position,
+                    "overlap_x": round(max(0, hn[0] + ho[0] - dx), 3),
+                    "overlap_y": round(max(0, hn[1] + ho[1] - dy), 3),
+                    "note": note,
+                })
+        return overlaps
+
+    def check_overlaps(self) -> list[dict[str, Any]]:
+        all_mobs = self._state.mobjects
+        if len(all_mobs) < 2:
+            return []
+        overlaps: list[dict[str, Any]] = []
+        for i in range(len(all_mobs)):
+            rest = all_mobs[:i] + all_mobs[i + 1:]
+            overlaps.extend(self._check_overlaps_for(all_mobs[i], rest))
+        return overlaps
 
     def get_mobject(self, mobject_id: str) -> MobjectRecord | None:
         for m in self._state.mobjects:
