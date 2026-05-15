@@ -22,7 +22,16 @@ pip install "mcp-manimgl[render]"
 pip install "mcp-manimgl[audio]"
 ```
 
-Requires manimgl system dependencies (pangocairo, OpenGL). See [manimgl docs](https://github.com/3b1b/manim).
+## System Dependencies
+
+| Dependency | Required for | Install |
+|---|---|---|
+| `ffmpeg` + `ffprobe` | Audio mixing, narration sync, music ducking | `apt install ffmpeg` |
+| `libfluidsynth3` | MIDI file rendering to audio | `apt install libfluidsynth3` |
+| SoundFont (`.sf2`/`.sf3`) | MIDI instrument sounds | `apt install fluidr3mono-gm-soundfont` |
+| pangocairo, OpenGL | Manim rendering engine | See [manimgl docs](https://github.com/3b1b/manim) |
+
+The server checks for non-Python dependencies at startup and reports any missing ones to stderr and via the `mcp-manimgl://info` resource.
 
 ## Usage
 

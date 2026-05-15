@@ -324,13 +324,13 @@ class SceneManager:
                 non_empty = [ln for ln in code_lines if ln.strip()]
                 base_indent = 0
                 if non_empty:
-                    base_indent = min(
-                        len(ln) - len(ln.lstrip()) for ln in non_empty
-                    )
+                    base_indent = min(len(ln) - len(ln.lstrip()) for ln in non_empty)
                 for line in code_lines:
                     if not line.strip():
                         continue
-                    processed = line[base_indent:] if len(line) > base_indent else line.lstrip()
+                    processed = (
+                        line[base_indent:] if len(line) > base_indent else line.lstrip()
+                    )
                     if not include_audio and "self.add_sound(" in processed:
                         continue
                     lines.append(f"{indent}{processed}")

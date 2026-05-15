@@ -36,6 +36,7 @@ class SessionRecorder:
     def __init__(self, output_dir: str | None = None) -> None:
         if output_dir is None:
             from mcp_manimgl import MCP_MANIMGL_WORKDIR
+
             output_dir = os.path.join(MCP_MANIMGL_WORKDIR, "sessions")
         self._session_id = uuid.uuid4().hex[:12]
         self._output_dir = output_dir

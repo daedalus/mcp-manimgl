@@ -73,6 +73,7 @@ def register_audio_tools(
 
         audio_id = f"audio_{uuid.uuid4().hex[:8]}"
         from mcp_manimgl import MCP_MANIMGL_WORKDIR
+
         audio_dir = os.path.join(MCP_MANIMGL_WORKDIR, "audio")
         os.makedirs(audio_dir, exist_ok=True)
         file_path = os.path.join(audio_dir, f"{audio_id}.mp3")
@@ -152,6 +153,7 @@ def register_audio_tools(
 
         audio_id = f"bgm_{uuid.uuid4().hex[:8]}"
         from mcp_manimgl import MCP_MANIMGL_WORKDIR
+
         audio_dir = os.path.join(MCP_MANIMGL_WORKDIR, "audio")
         os.makedirs(audio_dir, exist_ok=True)
 
