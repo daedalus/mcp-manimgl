@@ -1,0 +1,4626 @@
+[
+  {
+    "tool": "create_scene",
+    "arguments": {
+      "background_color": "#0a0a2e",
+      "resolution": "1920x1080",
+      "fps": 30,
+      "frame_height": 8.0
+    }
+  },
+  {
+    "tool": "add_text",
+    "arguments": {
+      "text": "Shor's Algorithm",
+      "font_size": 72.0,
+      "color": "#00FFAA",
+      "font": "Consolas"
+    }
+  },
+  {
+    "tool": "add_text",
+    "arguments": {
+      "text": "Quantum Integer Factorization",
+      "font_size": 36.0,
+      "color": "#88CCFF",
+      "font": "Consolas"
+    }
+  },
+  {
+    "tool": "move_to",
+    "arguments": {
+      "mobject_id": "m_62bd77a8",
+      "position": [
+        0.0,
+        1.5,
+        0.0
+      ],
+      "aligned_edge": null
+    }
+  },
+  {
+    "tool": "move_to",
+    "arguments": {
+      "mobject_id": "m_0da3c94e",
+      "position": [
+        0.0,
+        0.5,
+        0.0
+      ],
+      "aligned_edge": null
+    }
+  },
+  {
+    "tool": "add_narration",
+    "arguments": {
+      "text": "Shor's Algorithm is a quantum algorithm for integer factorization. It can factor large composite numbers exponentially faster than any known classical algorithm. This video explains how it works.",
+      "lang": "en"
+    }
+  },
+  {
+    "tool": "animate_fade_in",
+    "arguments": {
+      "mobject_id": "m_62bd77a8",
+      "run_time": 2.0,
+      "shift_direction": null
+    }
+  },
+  {
+    "tool": "animate_fade_in",
+    "arguments": {
+      "mobject_id": "m_0da3c94e",
+      "run_time": 2.0,
+      "shift_direction": null
+    }
+  },
+  {
+    "tool": "add_wait",
+    "arguments": {
+      "duration": 3.0
+    }
+  },
+  {
+    "tool": "animate_fade_out",
+    "arguments": {
+      "mobject_id": "m_62bd77a8",
+      "run_time": 1.0
+    }
+  },
+  {
+    "tool": "animate_fade_out",
+    "arguments": {
+      "mobject_id": "m_0da3c94e",
+      "run_time": 1.0
+    }
+  },
+  {
+    "tool": "add_tex",
+    "arguments": {
+      "tex_string": "\\text{Problem: Factor } N = p \\times q",
+      "font_size": 48.0,
+      "color": "#FFDD44"
+    }
+  },
+  {
+    "tool": "move_to",
+    "arguments": {
+      "mobject_id": "m_d123347e",
+      "position": [
+        0.0,
+        2.5,
+        0.0
+      ],
+      "aligned_edge": null
+    }
+  },
+  {
+    "tool": "add_text",
+    "arguments": {
+      "text": "Given a composite number N = p \u00d7 q (product of two primes),",
+      "font_size": 32.0,
+      "color": "#CCCCFF",
+      "font": "Consolas"
+    }
+  },
+  {
+    "tool": "move_to",
+    "arguments": {
+      "mobject_id": "m_557c089e",
+      "position": [
+        0.0,
+        1.5,
+        0.0
+      ],
+      "aligned_edge": null
+    }
+  },
+  {
+    "tool": "add_text",
+    "arguments": {
+      "text": "find the prime factors p and q efficiently.",
+      "font_size": 32.0,
+      "color": "#CCCCFF",
+      "font": "Consolas"
+    }
+  },
+  {
+    "tool": "move_to",
+    "arguments": {
+      "mobject_id": "m_be28b06e",
+      "position": [
+        0.0,
+        0.8,
+        0.0
+      ],
+      "aligned_edge": null
+    }
+  },
+  {
+    "tool": "add_tex",
+    "arguments": {
+      "tex_string": "\\text{Example: } N = 15 = 3 \\times 5",
+      "font_size": 36.0,
+      "color": "#88FF88"
+    }
+  },
+  {
+    "tool": "move_to",
+    "arguments": {
+      "mobject_id": "m_6aeee0fe",
+      "position": [
+        0.0,
+        -0.5,
+        0.0
+      ],
+      "aligned_edge": null
+    }
+  },
+  {
+    "tool": "animate_fade_in",
+    "arguments": {
+      "mobject_id": "m_d123347e",
+      "run_time": 1.5,
+      "shift_direction": null
+    }
+  },
+  {
+    "tool": "animate_fade_in",
+    "arguments": {
+      "mobject_id": "m_557c089e",
+      "run_time": 1.5,
+      "shift_direction": null
+    }
+  },
+  {
+    "tool": "animate_fade_in",
+    "arguments": {
+      "mobject_id": "m_be28b06e",
+      "run_time": 1.5,
+      "shift_direction": null
+    }
+  },
+  {
+    "tool": "animate_fade_in",
+    "arguments": {
+      "mobject_id": "m_6aeee0fe",
+      "run_time": 1.5,
+      "shift_direction": null
+    }
+  },
+  {
+    "tool": "add_narration",
+    "arguments": {
+      "text": "Shor's algorithm solves the integer factorization problem. Given a composite number N, which is the product of two prime numbers p and q, the algorithm finds p and q efficiently. For example, given N equals 15, it would find the factors 3 and 5.",
+      "lang": "en"
+    }
+  },
+  {
+    "tool": "add_wait",
+    "arguments": {
+      "duration": 2.0
+    }
+  },
+  {
+    "tool": "animate_fade_out",
+    "arguments": {
+      "mobject_id": "m_d123347e",
+      "run_time": 0.8
+    }
+  },
+  {
+    "tool": "animate_fade_out",
+    "arguments": {
+      "mobject_id": "m_557c089e",
+      "run_time": 0.8
+    }
+  },
+  {
+    "tool": "animate_fade_out",
+    "arguments": {
+      "mobject_id": "m_be28b06e",
+      "run_time": 0.8
+    }
+  },
+  {
+    "tool": "animate_fade_out",
+    "arguments": {
+      "mobject_id": "m_6aeee0fe",
+      "run_time": 0.8
+    }
+  },
+  {
+    "tool": "add_text",
+    "arguments": {
+      "text": "Step 1: Classical Preprocessing",
+      "font_size": 44.0,
+      "color": "#FFDD44",
+      "font": "Consolas"
+    }
+  },
+  {
+    "tool": "move_to",
+    "arguments": {
+      "mobject_id": "m_ee24c3bc",
+      "position": [
+        0.0,
+        2.5,
+        0.0
+      ],
+      "aligned_edge": null
+    }
+  },
+  {
+    "tool": "add_tex",
+    "arguments": {
+      "tex_string": "\\text{Pick a random } a \\text{ coprime to } N",
+      "font_size": 36.0,
+      "color": "#FFFFFF"
+    }
+  },
+  {
+    "tool": "move_to",
+    "arguments": {
+      "mobject_id": "m_68c1acf7",
+      "position": [
+        0.0,
+        1.2,
+        0.0
+      ],
+      "aligned_edge": null
+    }
+  },
+  {
+    "tool": "add_tex",
+    "arguments": {
+      "tex_string": "\\gcd(a, N) \\neq 1 \\implies \\text{factor found!}",
+      "font_size": 32.0,
+      "color": "#88FF88"
+    }
+  },
+  {
+    "tool": "move_to",
+    "arguments": {
+      "mobject_id": "m_ce65ffa1",
+      "position": [
+        0.0,
+        0.2,
+        0.0
+      ],
+      "aligned_edge": null
+    }
+  },
+  {
+    "tool": "add_tex",
+    "arguments": {
+      "tex_string": "\\gcd(a, N) = 1 \\implies \\text{proceed to quantum step}",
+      "font_size": 32.0,
+      "color": "#88CCFF"
+    }
+  },
+  {
+    "tool": "move_to",
+    "arguments": {
+      "mobject_id": "m_934e57a4",
+      "position": [
+        0.0,
+        -0.8,
+        0.0
+      ],
+      "aligned_edge": null
+    }
+  },
+  {
+    "tool": "animate_fade_in",
+    "arguments": {
+      "mobject_id": "m_ee24c3bc",
+      "run_time": 1.0,
+      "shift_direction": null
+    }
+  },
+  {
+    "tool": "animate_fade_in",
+    "arguments": {
+      "mobject_id": "m_68c1acf7",
+      "run_time": 1.0,
+      "shift_direction": null
+    }
+  },
+  {
+    "tool": "animate_fade_in",
+    "arguments": {
+      "mobject_id": "m_ce65ffa1",
+      "run_time": 1.0,
+      "shift_direction": null
+    }
+  },
+  {
+    "tool": "animate_fade_in",
+    "arguments": {
+      "mobject_id": "m_934e57a4",
+      "run_time": 1.0,
+      "shift_direction": null
+    }
+  },
+  {
+    "tool": "add_narration",
+    "arguments": {
+      "text": "Step one: Classical preprocessing. Pick a random number a that is coprime to N. Compute the greatest common divisor of a and N. If the gcd is not 1, we have already found a factor and are done. Otherwise, if the gcd equals 1, we proceed to the quantum step.",
+      "lang": "en"
+    }
+  },
+  {
+    "tool": "add_wait",
+    "arguments": {
+      "duration": 3.0
+    }
+  },
+  {
+    "tool": "animate_fade_out",
+    "arguments": {
+      "mobject_id": "m_ee24c3bc",
+      "run_time": 0.8
+    }
+  },
+  {
+    "tool": "animate_fade_out",
+    "arguments": {
+      "mobject_id": "m_68c1acf7",
+      "run_time": 0.8
+    }
+  },
+  {
+    "tool": "animate_fade_out",
+    "arguments": {
+      "mobject_id": "m_ce65ffa1",
+      "run_time": 0.8
+    }
+  },
+  {
+    "tool": "animate_fade_out",
+    "arguments": {
+      "mobject_id": "m_934e57a4",
+      "run_time": 0.8
+    }
+  },
+  {
+    "tool": "add_text",
+    "arguments": {
+      "text": "Step 2: Quantum Order Finding",
+      "font_size": 44.0,
+      "color": "#FFDD44",
+      "font": "Consolas"
+    }
+  },
+  {
+    "tool": "move_to",
+    "arguments": {
+      "mobject_id": "m_e93188a4",
+      "position": [
+        0.0,
+        2.8,
+        0.0
+      ],
+      "aligned_edge": null
+    }
+  },
+  {
+    "tool": "add_tex",
+    "arguments": {
+      "tex_string": "\\text{Find the order } r \\text{ of } a \\bmod N",
+      "font_size": 36.0,
+      "color": "#FFFFFF"
+    }
+  },
+  {
+    "tool": "move_to",
+    "arguments": {
+      "mobject_id": "m_cf7779b0",
+      "position": [
+        0.0,
+        1.8,
+        0.0
+      ],
+      "aligned_edge": null
+    }
+  },
+  {
+    "tool": "add_tex",
+    "arguments": {
+      "tex_string": "a^{r} \\equiv 1 \\pmod{N}",
+      "font_size": 48.0,
+      "color": "#88CCFF"
+    }
+  },
+  {
+    "tool": "move_to",
+    "arguments": {
+      "mobject_id": "m_224ef3e0",
+      "position": [
+        0.0,
+        0.5,
+        0.0
+      ],
+      "aligned_edge": null
+    }
+  },
+  {
+    "tool": "add_tex",
+    "arguments": {
+      "tex_string": "\\text{Smallest } r \\text{ such that } a^{r} \\bmod N = 1",
+      "font_size": 28.0,
+      "color": "#AAAAAA"
+    }
+  },
+  {
+    "tool": "move_to",
+    "arguments": {
+      "mobject_id": "m_9b3f527a",
+      "position": [
+        0.0,
+        -0.3,
+        0.0
+      ],
+      "aligned_edge": null
+    }
+  },
+  {
+    "tool": "add_text",
+    "arguments": {
+      "text": "Quantum Fourier Transform + Phase Estimation",
+      "font_size": 30.0,
+      "color": "#FF8888",
+      "font": "Consolas"
+    }
+  },
+  {
+    "tool": "move_to",
+    "arguments": {
+      "mobject_id": "m_ace1610d",
+      "position": [
+        0.0,
+        -1.5,
+        0.0
+      ],
+      "aligned_edge": null
+    }
+  },
+  {
+    "tool": "animate_fade_in",
+    "arguments": {
+      "mobject_id": "m_e93188a4",
+      "run_time": 1.0,
+      "shift_direction": null
+    }
+  },
+  {
+    "tool": "animate_fade_in",
+    "arguments": {
+      "mobject_id": "m_cf7779b0",
+      "run_time": 1.0,
+      "shift_direction": null
+    }
+  },
+  {
+    "tool": "animate_fade_in",
+    "arguments": {
+      "mobject_id": "m_224ef3e0",
+      "run_time": 1.5,
+      "shift_direction": null
+    }
+  },
+  {
+    "tool": "animate_fade_in",
+    "arguments": {
+      "mobject_id": "m_9b3f527a",
+      "run_time": 1.0,
+      "shift_direction": null
+    }
+  },
+  {
+    "tool": "animate_fade_in",
+    "arguments": {
+      "mobject_id": "m_ace1610d",
+      "run_time": 1.0,
+      "shift_direction": null
+    }
+  },
+  {
+    "tool": "add_tex",
+    "arguments": {
+      "tex_string": "\\text{Example: } a = 7, N = 15 \\implies r = 4",
+      "font_size": 28.0,
+      "color": "#88FF88"
+    }
+  },
+  {
+    "tool": "move_to",
+    "arguments": {
+      "mobject_id": "m_2cf8a763",
+      "position": [
+        0.0,
+        -2.5,
+        0.0
+      ],
+      "aligned_edge": null
+    }
+  },
+  {
+    "tool": "animate_fade_in",
+    "arguments": {
+      "mobject_id": "m_2cf8a763",
+      "run_time": 1.0,
+      "shift_direction": null
+    }
+  },
+  {
+    "tool": "add_narration",
+    "arguments": {
+      "text": "Step two: Quantum order finding. This is the heart of Shor's algorithm. We need to find the order r of a modulo N. The order r is the smallest positive integer such that a to the power of r is congruent to 1 modulo N. This is computed using a quantum circuit that combines modular exponentiation with the quantum Fourier transform and phase estimation. For example, with a equals 7 and N equals 15, the order r is 4, because 7 to the 4th power is 2401, which is congruent to 1 modulo 15.",
+      "lang": "en"
+    }
+  },
+  {
+    "tool": "add_custom_code",
+    "arguments": {
+      "code_snippet": "# Visualize modular exponentiation steps\nsteps_tex = Tex(\n    \"7^1 \\\\equiv 7 \\\\pmod{15}\",\n    \"7^2 \\\\equiv 4 \\\\pmod{15}\",\n    \"7^3 \\\\equiv 13 \\\\pmod{15}\",\n    \"7^4 \\\\equiv 1 \\\\pmod{15}\",\n    tex_environment=None,\n)\nfor i, t in enumerate(steps_tex):\n    t.move_to([-4, 0.5 - i * 0.8, 0])\n    t.set_opacity(0.7)\n    self.play(Write(t, run_time=0.5))\nself.wait(1)\n\n# Highlight r = 4\nbox = SurroundingRectangle(steps_tex[3], color=\"#88FF88\", buff=0.1)\nself.play(Create(box))\nself.wait(0.5)"
+    }
+  },
+  {
+    "tool": "add_wait",
+    "arguments": {
+      "duration": 1.0
+    }
+  },
+  {
+    "tool": "animate_fade_out",
+    "arguments": {
+      "mobject_id": "m_e93188a4",
+      "run_time": 0.5
+    }
+  },
+  {
+    "tool": "animate_fade_out",
+    "arguments": {
+      "mobject_id": "m_cf7779b0",
+      "run_time": 0.5
+    }
+  },
+  {
+    "tool": "animate_fade_out",
+    "arguments": {
+      "mobject_id": "m_224ef3e0",
+      "run_time": 0.5
+    }
+  },
+  {
+    "tool": "animate_fade_out",
+    "arguments": {
+      "mobject_id": "m_9b3f527a",
+      "run_time": 0.5
+    }
+  },
+  {
+    "tool": "animate_fade_out",
+    "arguments": {
+      "mobject_id": "m_ace1610d",
+      "run_time": 0.5
+    }
+  },
+  {
+    "tool": "animate_fade_out",
+    "arguments": {
+      "mobject_id": "m_2cf8a763",
+      "run_time": 0.5
+    }
+  },
+  {
+    "tool": "add_wait",
+    "arguments": {
+      "duration": 1.0
+    }
+  },
+  {
+    "tool": "clear_scene",
+    "arguments": {}
+  },
+  {
+    "tool": "add_text",
+    "arguments": {
+      "text": "Modular Exponentiation: a = 7, N = 15",
+      "font_size": 36.0,
+      "color": "#88FF88",
+      "font": "Consolas"
+    }
+  },
+  {
+    "tool": "move_to",
+    "arguments": {
+      "mobject_id": "m_8ae46f2a",
+      "position": [
+        0.0,
+        2.5,
+        0.0
+      ],
+      "aligned_edge": null
+    }
+  },
+  {
+    "tool": "add_custom_code",
+    "arguments": {
+      "code_snippet": "# Show modular exponentiation steps\nstep1 = Tex(\"7^1 \\\\equiv 7 \\\\pmod{15}\")\nstep2 = Tex(\"7^2 \\\\equiv 4 \\\\pmod{15}\")\nstep3 = Tex(\"7^3 \\\\equiv 13 \\\\pmod{15}\")\nstep4 = Tex(\"7^4 \\\\equiv 1 \\\\pmod{15}\")\nsteps = [step1, step2, step3, step4]\nfor i, t in enumerate(steps):\n    t.move_to([-2, 1 - i * 0.9, 0])\n    t.scale(0.9)\n\nfor t in steps:\n    self.play(Write(t, run_time=0.6))\n    self.wait(0.3)\n\nbox = SurroundingRectangle(step4, color=\"#88FF88\", buff=0.1)\nself.play(Create(box))\nself.wait(0.5)\n\norder_text = Tex(\"\\\\therefore r = 4\").set_color(\"#FFFF00\")\norder_text.next_to(box, DOWN, buff=0.5)\nself.play(Write(order_text))\nself.wait(1)\n\n# Show the quantum concepts\nqft_text = Text(\"Quantum Fourier Transform + Phase Estimation\", font_size=28, color=\"#FF8888\")\nqft_text.move_to([2.5, 1, 0])\nself.play(Write(qft_text))\nself.wait(1)\n\nqc_text = Text(\"Quantum Circuit computes r\", font_size=24, color=\"#88CCFF\")\nqc_text.next_to(qft_text, DOWN, buff=0.5)\nself.play(Write(qc_text))\nself.wait(2)"
+    }
+  },
+  {
+    "tool": "add_wait",
+    "arguments": {
+      "duration": 1.0
+    }
+  },
+  {
+    "tool": "animate_fade_in",
+    "arguments": {
+      "mobject_id": "m_8ae46f2a",
+      "run_time": 1.0,
+      "shift_direction": null
+    }
+  },
+  {
+    "tool": "add_wait",
+    "arguments": {
+      "duration": 6.0
+    }
+  },
+  {
+    "tool": "clear_scene",
+    "arguments": {}
+  },
+  {
+    "tool": "add_text",
+    "arguments": {
+      "text": "Step 3: Classical Post-Processing",
+      "font_size": 44.0,
+      "color": "#FFDD44",
+      "font": "Consolas"
+    }
+  },
+  {
+    "tool": "move_to",
+    "arguments": {
+      "mobject_id": "m_f75d45f6",
+      "position": [
+        0.0,
+        2.8,
+        0.0
+      ],
+      "aligned_edge": null
+    }
+  },
+  {
+    "tool": "add_tex",
+    "arguments": {
+      "tex_string": "\\text{If } r \\text{ is odd, pick a new } a \\text{ and retry}",
+      "font_size": 28.0,
+      "color": "#FF8888"
+    }
+  },
+  {
+    "tool": "move_to",
+    "arguments": {
+      "mobject_id": "m_1dab732a",
+      "position": [
+        0.0,
+        1.8,
+        0.0
+      ],
+      "aligned_edge": null
+    }
+  },
+  {
+    "tool": "add_tex",
+    "arguments": {
+      "tex_string": "\\text{If } a^{r/2} \\equiv -1 \\pmod{N}, \\text{ pick a new } a",
+      "font_size": 28.0,
+      "color": "#FF8888"
+    }
+  },
+  {
+    "tool": "move_to",
+    "arguments": {
+      "mobject_id": "m_35abcd0c",
+      "position": [
+        0.0,
+        1.0,
+        0.0
+      ],
+      "aligned_edge": null
+    }
+  },
+  {
+    "tool": "add_tex",
+    "arguments": {
+      "tex_string": "\\text{Otherwise: } p = \\gcd(a^{r/2} - 1, N)",
+      "font_size": 32.0,
+      "color": "#88FF88"
+    }
+  },
+  {
+    "tool": "move_to",
+    "arguments": {
+      "mobject_id": "m_f08da8b1",
+      "position": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "aligned_edge": null
+    }
+  },
+  {
+    "tool": "add_tex",
+    "arguments": {
+      "tex_string": "q = \\gcd(a^{r/2} + 1, N)",
+      "font_size": 32.0,
+      "color": "#88FF88"
+    }
+  },
+  {
+    "tool": "move_to",
+    "arguments": {
+      "mobject_id": "m_f27f14cb",
+      "position": [
+        0.0,
+        -0.8,
+        0.0
+      ],
+      "aligned_edge": null
+    }
+  },
+  {
+    "tool": "add_tex",
+    "arguments": {
+      "tex_string": "\\text{Example: } r = 4, a = 7, N = 15",
+      "font_size": 28.0,
+      "color": "#AAAAAA"
+    }
+  },
+  {
+    "tool": "move_to",
+    "arguments": {
+      "mobject_id": "m_737052c7",
+      "position": [
+        0.0,
+        -1.8,
+        0.0
+      ],
+      "aligned_edge": null
+    }
+  },
+  {
+    "tool": "add_custom_code",
+    "arguments": {
+      "code_snippet": "# Show the example calculation\nexample = Tex(\n    \"7^{4/2} \\\\equiv 7^2 \\\\equiv 4 \\\\not\\\\equiv -1 \\\\pmod{15}\"\n).set_color(\"#FFFFFF\")\nexample.move_to([0, -2.8, 0])\nexample.scale(0.8)\nself.play(Write(example))\nself.wait(1)\n\np_eq = Tex(\n    \"p = \\\\gcd(7^2 - 1, 15) = \\\\gcd(48, 15) = 3\"\n).set_color(\"#88FF88\")\np_eq.move_to([0, -3.5, 0])\np_eq.scale(0.8)\nself.play(Write(p_eq))\nself.wait(1)\n\nq_eq = Tex(\n    \"q = \\\\gcd(7^2 + 1, 15) = \\\\gcd(50, 15) = 5\"\n).set_color(\"#88FF88\")\nq_eq.move_to([0, -4.2, 0])\nq_eq.scale(0.8)\nself.play(Write(q_eq))\nself.wait(1)\n\nresult = Tex(\n    \"\\\\therefore N = 15 = 3 \\\\times 5\"\n).set_color(\"#FFFF00\")\nresult.move_to([0, -5.2, 0])\nresult.scale(1.0)\nself.play(Write(result))\nself.wait(2)"
+    }
+  },
+  {
+    "tool": "animate_fade_in",
+    "arguments": {
+      "mobject_id": "m_f75d45f6",
+      "run_time": 1.0,
+      "shift_direction": null
+    }
+  },
+  {
+    "tool": "animate_fade_in",
+    "arguments": {
+      "mobject_id": "m_1dab732a",
+      "run_time": 0.8,
+      "shift_direction": null
+    }
+  },
+  {
+    "tool": "animate_fade_in",
+    "arguments": {
+      "mobject_id": "m_35abcd0c",
+      "run_time": 0.8,
+      "shift_direction": null
+    }
+  },
+  {
+    "tool": "animate_fade_in",
+    "arguments": {
+      "mobject_id": "m_f08da8b1",
+      "run_time": 0.8,
+      "shift_direction": null
+    }
+  },
+  {
+    "tool": "animate_fade_in",
+    "arguments": {
+      "mobject_id": "m_f27f14cb",
+      "run_time": 0.8,
+      "shift_direction": null
+    }
+  },
+  {
+    "tool": "animate_fade_in",
+    "arguments": {
+      "mobject_id": "m_737052c7",
+      "run_time": 0.8,
+      "shift_direction": null
+    }
+  },
+  {
+    "tool": "add_narration",
+    "arguments": {
+      "text": "Step three: Classical post-processing. Once we have the order r, we first check if r is even. If r is odd, we must pick a different a and try again. Next, we check if a to the power of r over 2 is congruent to negative 1 modulo N. If so, we also need to retry. Otherwise, the factors are found: p is the greatest common divisor of a to the power of r over 2 minus 1 and N, and q is the greatest common divisor of a to the power of r over 2 plus 1 and N.",
+      "lang": "en"
+    }
+  },
+  {
+    "tool": "add_wait",
+    "arguments": {
+      "duration": 10.0
+    }
+  },
+  {
+    "tool": "clear_scene",
+    "arguments": {}
+  },
+  {
+    "tool": "add_text",
+    "arguments": {
+      "text": "Shor's Algorithm: Summary",
+      "font_size": 48.0,
+      "color": "#00FFAA",
+      "font": "Consolas"
+    }
+  },
+  {
+    "tool": "move_to",
+    "arguments": {
+      "mobject_id": "m_0fa2e321",
+      "position": [
+        0.0,
+        2.5,
+        0.0
+      ],
+      "aligned_edge": null
+    }
+  },
+  {
+    "tool": "add_custom_code",
+    "arguments": {
+      "code_snippet": "# Summary boxes\nitems = [\n    (\"1. Classical Preprocessing\", \"Pick a coprime to N, compute gcd(a,N)\", \"#88CCFF\"),\n    (\"2. Quantum Order Finding\", \"Find r such that a^r \u2261 1 (mod N) using QFT\", \"#88FF88\"),\n    (\"3. Classical Post-Processing\", \"Compute p = gcd(a^{r/2} - 1, N), q = gcd(a^{r/2} + 1, N)\", \"#FF8888\"),\n]\n\nfor i, (title, desc, color) in enumerate(items):\n    y = 1.2 - i * 1.2\n    t = Text(title, font_size=28, color=color, font=\"Consolas\")\n    t.move_to([-5, y, 0])\n    t.align_to(ORIGIN, LEFT)\n    self.play(Write(t, run_time=0.5))\n\n    d = Text(desc, font_size=22, color=\"#AAAAAA\", font=\"Consolas\")\n    d.next_to(t, DOWN, buff=0.15)\n    d.align_to(t, LEFT)\n    self.play(Write(d, run_time=0.5))\n    self.wait(0.3)\n\nself.wait(1)\n\n# Key insight\ninsight = Text(\n    \"Exponential speedup over classical factoring algorithms\",\n    font_size=26, color=\"#FFFF00\", font=\"Consolas\"\n)\ninsight.move_to([0, -2.5, 0])\nself.play(Write(insight))\nself.wait(0.5)\n\nshor_text = Text(\n    \"Shor's Algorithm: O((log N)^3) vs classical O(e^{(log N)^{1/3}})\",\n    font_size=22, color=\"#88CCFF\", font=\"Consolas\"\n)\nshor_text.next_to(insight, DOWN, buff=0.3)\nself.play(Write(shor_text))\nself.wait(2)"
+    }
+  },
+  {
+    "tool": "animate_fade_in",
+    "arguments": {
+      "mobject_id": "m_0fa2e321",
+      "run_time": 1.0,
+      "shift_direction": null
+    }
+  },
+  {
+    "tool": "add_narration",
+    "arguments": {
+      "text": "Shor's algorithm combines classical preprocessing with quantum order finding to factor large composite numbers exponentially faster than any known classical algorithm. The algorithm runs in O log N cubed time, compared to the best classical algorithms which run in sub-exponential time. This dramatic speedup is one of the most important demonstrations of quantum computing's potential, with profound implications for cryptography, particularly the RSA cryptosystem which relies on the difficulty of factoring.",
+      "lang": "en"
+    }
+  },
+  {
+    "tool": "add_wait",
+    "arguments": {
+      "duration": 5.0
+    }
+  },
+  {
+    "tool": "get_scene_info",
+    "arguments": {}
+  },
+  {
+    "tool": "add_background_music",
+    "arguments": {
+      "file_path": "/tmp/mcp_manimgl/classical_bg.mid",
+      "volume": 0.25,
+      "loop": true,
+      "duck_threshold": "-24dB",
+      "duck_ratio": 4.0,
+      "duck_attack": 0.1,
+      "duck_release": 0.5
+    }
+  },
+  {
+    "tool": "get_scene_info",
+    "arguments": {}
+  },
+  {
+    "tool": "render_scene",
+    "arguments": {
+      "output_path": "/tmp/mcp_manimgl/shor_algorithm.mp4",
+      "fmt": "mp4"
+    }
+  },
+  {
+    "tool": "get_render_result",
+    "arguments": {
+      "render_id": "c008e05a93ee"
+    }
+  },
+  {
+    "tool": "render_scene",
+    "arguments": {
+      "output_path": "/tmp/mcp_manimgl/shor_algorithm.mp4",
+      "fmt": "mp4"
+    }
+  },
+  {
+    "tool": "get_render_result",
+    "arguments": {
+      "render_id": "2f1814ddf328"
+    }
+  },
+  {
+    "tool": "clear_scene",
+    "arguments": {}
+  },
+  {
+    "tool": "create_scene",
+    "arguments": {
+      "background_color": "#0a0a2e",
+      "resolution": "1920x1080",
+      "fps": 30,
+      "frame_height": 8.0
+    }
+  },
+  {
+    "tool": "add_text",
+    "arguments": {
+      "text": "Shor's Algorithm",
+      "font_size": 72.0,
+      "color": "#00FFAA",
+      "font": "Consolas"
+    }
+  },
+  {
+    "tool": "add_text",
+    "arguments": {
+      "text": "Quantum Integer Factorization",
+      "font_size": 36.0,
+      "color": "#88CCFF",
+      "font": "Consolas"
+    }
+  },
+  {
+    "tool": "move_to",
+    "arguments": {
+      "mobject_id": "m_2aa9f019",
+      "position": [
+        0.0,
+        1.5,
+        0.0
+      ],
+      "aligned_edge": null
+    }
+  },
+  {
+    "tool": "move_to",
+    "arguments": {
+      "mobject_id": "m_3641ba7e",
+      "position": [
+        0.0,
+        0.5,
+        0.0
+      ],
+      "aligned_edge": null
+    }
+  },
+  {
+    "tool": "add_background_music",
+    "arguments": {
+      "file_path": "/tmp/mcp_manimgl/classical_bg.mid",
+      "volume": 0.2,
+      "loop": true,
+      "duck_threshold": "-24dB",
+      "duck_ratio": 4.0,
+      "duck_attack": 0.1,
+      "duck_release": 0.5
+    }
+  },
+  {
+    "tool": "animate_fade_in",
+    "arguments": {
+      "mobject_id": "m_2aa9f019",
+      "run_time": 2.0,
+      "shift_direction": null
+    }
+  },
+  {
+    "tool": "animate_fade_in",
+    "arguments": {
+      "mobject_id": "m_3641ba7e",
+      "run_time": 2.0,
+      "shift_direction": null
+    }
+  },
+  {
+    "tool": "add_narration",
+    "arguments": {
+      "text": "Shor's Algorithm is a quantum algorithm for integer factorization. It can factor large composite numbers exponentially faster than any known classical algorithm.",
+      "lang": "en"
+    }
+  },
+  {
+    "tool": "add_wait",
+    "arguments": {
+      "duration": 3.0
+    }
+  },
+  {
+    "tool": "animate_fade_out",
+    "arguments": {
+      "mobject_id": "m_2aa9f019",
+      "run_time": 0.8
+    }
+  },
+  {
+    "tool": "animate_fade_out",
+    "arguments": {
+      "mobject_id": "m_3641ba7e",
+      "run_time": 0.8
+    }
+  },
+  {
+    "tool": "add_tex",
+    "arguments": {
+      "tex_string": "\\text{Problem: Factor } N = p \\times q",
+      "font_size": 48.0,
+      "color": "#FFDD44"
+    }
+  },
+  {
+    "tool": "add_text",
+    "arguments": {
+      "text": "Given a composite number N = p x q, find the primes p and q",
+      "font_size": 32.0,
+      "color": "#CCCCFF",
+      "font": "Consolas"
+    }
+  },
+  {
+    "tool": "add_tex",
+    "arguments": {
+      "tex_string": "\\text{Example: } N = 15 = 3 \\times 5",
+      "font_size": 36.0,
+      "color": "#88FF88"
+    }
+  },
+  {
+    "tool": "move_to",
+    "arguments": {
+      "mobject_id": "m_f1ef7d11",
+      "position": [
+        0.0,
+        2.5,
+        0.0
+      ],
+      "aligned_edge": null
+    }
+  },
+  {
+    "tool": "move_to",
+    "arguments": {
+      "mobject_id": "m_536baeb5",
+      "position": [
+        0.0,
+        1.2,
+        0.0
+      ],
+      "aligned_edge": null
+    }
+  },
+  {
+    "tool": "move_to",
+    "arguments": {
+      "mobject_id": "m_759c1191",
+      "position": [
+        0.0,
+        -0.2,
+        0.0
+      ],
+      "aligned_edge": null
+    }
+  },
+  {
+    "tool": "animate_fade_in",
+    "arguments": {
+      "mobject_id": "m_f1ef7d11",
+      "run_time": 1.0,
+      "shift_direction": null
+    }
+  },
+  {
+    "tool": "animate_fade_in",
+    "arguments": {
+      "mobject_id": "m_536baeb5",
+      "run_time": 1.0,
+      "shift_direction": null
+    }
+  },
+  {
+    "tool": "animate_fade_in",
+    "arguments": {
+      "mobject_id": "m_759c1191",
+      "run_time": 1.0,
+      "shift_direction": null
+    }
+  },
+  {
+    "tool": "add_narration",
+    "arguments": {
+      "text": "Shor's algorithm solves the integer factorization problem. Given a composite number N, which is the product of two primes, the algorithm finds p and q efficiently. For example, given N equals 15, it finds the factors 3 and 5.",
+      "lang": "en"
+    }
+  },
+  {
+    "tool": "add_wait",
+    "arguments": {
+      "duration": 3.0
+    }
+  },
+  {
+    "tool": "animate_fade_out",
+    "arguments": {
+      "mobject_id": "m_f1ef7d11",
+      "run_time": 0.8
+    }
+  },
+  {
+    "tool": "animate_fade_out",
+    "arguments": {
+      "mobject_id": "m_536baeb5",
+      "run_time": 0.8
+    }
+  },
+  {
+    "tool": "animate_fade_out",
+    "arguments": {
+      "mobject_id": "m_759c1191",
+      "run_time": 0.8
+    }
+  },
+  {
+    "tool": "add_text",
+    "arguments": {
+      "text": "Step 1: Classical Preprocessing",
+      "font_size": 44.0,
+      "color": "#FFDD44",
+      "font": "Consolas"
+    }
+  },
+  {
+    "tool": "add_tex",
+    "arguments": {
+      "tex_string": "\\text{Pick a random } a \\text{ coprime to } N",
+      "font_size": 36.0,
+      "color": "#FFFFFF"
+    }
+  },
+  {
+    "tool": "add_tex",
+    "arguments": {
+      "tex_string": "\\gcd(a, N) \\neq 1 \\implies \\text{factor found!}",
+      "font_size": 32.0,
+      "color": "#88FF88"
+    }
+  },
+  {
+    "tool": "add_tex",
+    "arguments": {
+      "tex_string": "\\gcd(a, N) = 1 \\implies \\text{proceed to quantum step}",
+      "font_size": 32.0,
+      "color": "#88CCFF"
+    }
+  },
+  {
+    "tool": "move_to",
+    "arguments": {
+      "mobject_id": "m_128db988",
+      "position": [
+        0.0,
+        2.8,
+        0.0
+      ],
+      "aligned_edge": null
+    }
+  },
+  {
+    "tool": "move_to",
+    "arguments": {
+      "mobject_id": "m_a85a7727",
+      "position": [
+        0.0,
+        1.5,
+        0.0
+      ],
+      "aligned_edge": null
+    }
+  },
+  {
+    "tool": "move_to",
+    "arguments": {
+      "mobject_id": "m_eb578220",
+      "position": [
+        0.0,
+        0.2,
+        0.0
+      ],
+      "aligned_edge": null
+    }
+  },
+  {
+    "tool": "move_to",
+    "arguments": {
+      "mobject_id": "m_48eff4ec",
+      "position": [
+        0.0,
+        -1.0,
+        0.0
+      ],
+      "aligned_edge": null
+    }
+  },
+  {
+    "tool": "animate_fade_in",
+    "arguments": {
+      "mobject_id": "m_128db988",
+      "run_time": 1.0,
+      "shift_direction": null
+    }
+  },
+  {
+    "tool": "animate_fade_in",
+    "arguments": {
+      "mobject_id": "m_a85a7727",
+      "run_time": 1.0,
+      "shift_direction": null
+    }
+  },
+  {
+    "tool": "animate_fade_in",
+    "arguments": {
+      "mobject_id": "m_eb578220",
+      "run_time": 1.0,
+      "shift_direction": null
+    }
+  },
+  {
+    "tool": "animate_fade_in",
+    "arguments": {
+      "mobject_id": "m_48eff4ec",
+      "run_time": 1.0,
+      "shift_direction": null
+    }
+  },
+  {
+    "tool": "add_narration",
+    "arguments": {
+      "text": "Step one: Classical preprocessing. Pick a random number a that is coprime to N. If the greatest common divisor of a and N is not 1, we have already found a factor. Otherwise, we proceed to the quantum step.",
+      "lang": "en"
+    }
+  },
+  {
+    "tool": "add_wait",
+    "arguments": {
+      "duration": 3.0
+    }
+  },
+  {
+    "tool": "animate_fade_out",
+    "arguments": {
+      "mobject_id": "m_128db988",
+      "run_time": 0.8
+    }
+  },
+  {
+    "tool": "animate_fade_out",
+    "arguments": {
+      "mobject_id": "m_a85a7727",
+      "run_time": 0.8
+    }
+  },
+  {
+    "tool": "animate_fade_out",
+    "arguments": {
+      "mobject_id": "m_eb578220",
+      "run_time": 0.8
+    }
+  },
+  {
+    "tool": "animate_fade_out",
+    "arguments": {
+      "mobject_id": "m_48eff4ec",
+      "run_time": 0.8
+    }
+  },
+  {
+    "tool": "add_text",
+    "arguments": {
+      "text": "Step 2: Quantum Order Finding",
+      "font_size": 44.0,
+      "color": "#FFDD44",
+      "font": "Consolas"
+    }
+  },
+  {
+    "tool": "add_tex",
+    "arguments": {
+      "tex_string": "\\text{Find the order } r \\text{ of } a \\bmod N",
+      "font_size": 36.0,
+      "color": "#FFFFFF"
+    }
+  },
+  {
+    "tool": "add_tex",
+    "arguments": {
+      "tex_string": "a^{r} \\equiv 1 \\pmod{N}",
+      "font_size": 48.0,
+      "color": "#88CCFF"
+    }
+  },
+  {
+    "tool": "add_text",
+    "arguments": {
+      "text": "Quantum Fourier Transform + Phase Estimation",
+      "font_size": 30.0,
+      "color": "#FF8888",
+      "font": "Consolas"
+    }
+  },
+  {
+    "tool": "move_to",
+    "arguments": {
+      "mobject_id": "m_188c55c1",
+      "position": [
+        0.0,
+        2.8,
+        0.0
+      ],
+      "aligned_edge": null
+    }
+  },
+  {
+    "tool": "move_to",
+    "arguments": {
+      "mobject_id": "m_c386766e",
+      "position": [
+        0.0,
+        1.8,
+        0.0
+      ],
+      "aligned_edge": null
+    }
+  },
+  {
+    "tool": "move_to",
+    "arguments": {
+      "mobject_id": "m_04c9ab7f",
+      "position": [
+        0.0,
+        0.5,
+        0.0
+      ],
+      "aligned_edge": null
+    }
+  },
+  {
+    "tool": "move_to",
+    "arguments": {
+      "mobject_id": "m_9664cc65",
+      "position": [
+        0.0,
+        -0.8,
+        0.0
+      ],
+      "aligned_edge": null
+    }
+  },
+  {
+    "tool": "animate_fade_in",
+    "arguments": {
+      "mobject_id": "m_188c55c1",
+      "run_time": 1.0,
+      "shift_direction": null
+    }
+  },
+  {
+    "tool": "animate_fade_in",
+    "arguments": {
+      "mobject_id": "m_c386766e",
+      "run_time": 1.0,
+      "shift_direction": null
+    }
+  },
+  {
+    "tool": "animate_fade_in",
+    "arguments": {
+      "mobject_id": "m_04c9ab7f",
+      "run_time": 1.5,
+      "shift_direction": null
+    }
+  },
+  {
+    "tool": "animate_fade_in",
+    "arguments": {
+      "mobject_id": "m_9664cc65",
+      "run_time": 1.0,
+      "shift_direction": null
+    }
+  },
+  {
+    "tool": "add_tex",
+    "arguments": {
+      "tex_string": "\\text{Example: } a = 7, N = 15",
+      "font_size": 28.0,
+      "color": "#88FF88"
+    }
+  },
+  {
+    "tool": "move_to",
+    "arguments": {
+      "mobject_id": "m_b8e8d839",
+      "position": [
+        -4.0,
+        -1.5,
+        0.0
+      ],
+      "aligned_edge": null
+    }
+  },
+  {
+    "tool": "add_tex",
+    "arguments": {
+      "tex_string": "7^{1} \\equiv 7 \\pmod{15}",
+      "font_size": 26.0,
+      "color": "#AAAAAA"
+    }
+  },
+  {
+    "tool": "move_to",
+    "arguments": {
+      "mobject_id": "m_d72c99ae",
+      "position": [
+        -4.0,
+        -2.3,
+        0.0
+      ],
+      "aligned_edge": null
+    }
+  },
+  {
+    "tool": "add_tex",
+    "arguments": {
+      "tex_string": "7^{2} \\equiv 4 \\pmod{15}",
+      "font_size": 26.0,
+      "color": "#AAAAAA"
+    }
+  },
+  {
+    "tool": "move_to",
+    "arguments": {
+      "mobject_id": "m_b735d6db",
+      "position": [
+        -4.0,
+        -3.1,
+        0.0
+      ],
+      "aligned_edge": null
+    }
+  },
+  {
+    "tool": "add_tex",
+    "arguments": {
+      "tex_string": "7^{3} \\equiv 13 \\pmod{15}",
+      "font_size": 26.0,
+      "color": "#AAAAAA"
+    }
+  },
+  {
+    "tool": "move_to",
+    "arguments": {
+      "mobject_id": "m_39cc848b",
+      "position": [
+        -4.0,
+        -3.9,
+        0.0
+      ],
+      "aligned_edge": null
+    }
+  },
+  {
+    "tool": "add_tex",
+    "arguments": {
+      "tex_string": "7^{4} \\equiv 1 \\pmod{15}",
+      "font_size": 26.0,
+      "color": "#88FF88"
+    }
+  },
+  {
+    "tool": "move_to",
+    "arguments": {
+      "mobject_id": "m_7e217336",
+      "position": [
+        -4.0,
+        -4.7,
+        0.0
+      ],
+      "aligned_edge": null
+    }
+  },
+  {
+    "tool": "add_tex",
+    "arguments": {
+      "tex_string": "\\therefore r = 4",
+      "font_size": 32.0,
+      "color": "#FFFF00"
+    }
+  },
+  {
+    "tool": "move_to",
+    "arguments": {
+      "mobject_id": "m_02b0b165",
+      "position": [
+        -4.0,
+        -5.5,
+        0.0
+      ],
+      "aligned_edge": null
+    }
+  },
+  {
+    "tool": "animate_fade_in",
+    "arguments": {
+      "mobject_id": "m_b8e8d839",
+      "run_time": 0.8,
+      "shift_direction": null
+    }
+  },
+  {
+    "tool": "animate_fade_in",
+    "arguments": {
+      "mobject_id": "m_d72c99ae",
+      "run_time": 0.5,
+      "shift_direction": null
+    }
+  },
+  {
+    "tool": "animate_fade_in",
+    "arguments": {
+      "mobject_id": "m_b735d6db",
+      "run_time": 0.5,
+      "shift_direction": null
+    }
+  },
+  {
+    "tool": "animate_fade_in",
+    "arguments": {
+      "mobject_id": "m_39cc848b",
+      "run_time": 0.5,
+      "shift_direction": null
+    }
+  },
+  {
+    "tool": "animate_fade_in",
+    "arguments": {
+      "mobject_id": "m_7e217336",
+      "run_time": 0.8,
+      "shift_direction": null
+    }
+  },
+  {
+    "tool": "animate_fade_in",
+    "arguments": {
+      "mobject_id": "m_02b0b165",
+      "run_time": 1.0,
+      "shift_direction": null
+    }
+  },
+  {
+    "tool": "add_wait",
+    "arguments": {
+      "duration": 4.0
+    }
+  },
+  {
+    "tool": "add_narration",
+    "arguments": {
+      "text": "Step two: Quantum order finding, the heart of Shor's algorithm. We need the order r, the smallest integer such that a to the power of r is congruent to 1 modulo N. This is computed using the quantum Fourier transform and phase estimation. For a equals 7 and N equals 15, the order r is 4, since 7 to the 4th power is 2401, which is 1 modulo 15.",
+      "lang": "en"
+    }
+  },
+  {
+    "tool": "animate_fade_out",
+    "arguments": {
+      "mobject_id": "m_188c55c1",
+      "run_time": 0.6
+    }
+  },
+  {
+    "tool": "animate_fade_out",
+    "arguments": {
+      "mobject_id": "m_c386766e",
+      "run_time": 0.6
+    }
+  },
+  {
+    "tool": "animate_fade_out",
+    "arguments": {
+      "mobject_id": "m_04c9ab7f",
+      "run_time": 0.6
+    }
+  },
+  {
+    "tool": "animate_fade_out",
+    "arguments": {
+      "mobject_id": "m_9664cc65",
+      "run_time": 0.6
+    }
+  },
+  {
+    "tool": "animate_fade_out",
+    "arguments": {
+      "mobject_id": "m_b8e8d839",
+      "run_time": 0.6
+    }
+  },
+  {
+    "tool": "animate_fade_out",
+    "arguments": {
+      "mobject_id": "m_d72c99ae",
+      "run_time": 0.6
+    }
+  },
+  {
+    "tool": "animate_fade_out",
+    "arguments": {
+      "mobject_id": "m_b735d6db",
+      "run_time": 0.6
+    }
+  },
+  {
+    "tool": "animate_fade_out",
+    "arguments": {
+      "mobject_id": "m_39cc848b",
+      "run_time": 0.6
+    }
+  },
+  {
+    "tool": "animate_fade_out",
+    "arguments": {
+      "mobject_id": "m_7e217336",
+      "run_time": 0.6
+    }
+  },
+  {
+    "tool": "animate_fade_out",
+    "arguments": {
+      "mobject_id": "m_02b0b165",
+      "run_time": 0.6
+    }
+  },
+  {
+    "tool": "add_text",
+    "arguments": {
+      "text": "Step 3: Classical Post-Processing",
+      "font_size": 44.0,
+      "color": "#FFDD44",
+      "font": "Consolas"
+    }
+  },
+  {
+    "tool": "add_tex",
+    "arguments": {
+      "tex_string": "\\text{If } r \\text{ is odd, pick a new } a",
+      "font_size": 28.0,
+      "color": "#FF8888"
+    }
+  },
+  {
+    "tool": "add_tex",
+    "arguments": {
+      "tex_string": "\\text{If } a^{r/2} \\equiv -1 \\pmod{N}, \\text{ pick a new } a",
+      "font_size": 28.0,
+      "color": "#FF8888"
+    }
+  },
+  {
+    "tool": "add_tex",
+    "arguments": {
+      "tex_string": "\\text{Otherwise: } p = \\gcd(a^{r/2} - 1, N)",
+      "font_size": 32.0,
+      "color": "#88FF88"
+    }
+  },
+  {
+    "tool": "add_tex",
+    "arguments": {
+      "tex_string": "q = \\gcd(a^{r/2} + 1, N)",
+      "font_size": 32.0,
+      "color": "#88FF88"
+    }
+  },
+  {
+    "tool": "add_tex",
+    "arguments": {
+      "tex_string": "\\text{Example: } r = 4, a = 7, N = 15",
+      "font_size": 28.0,
+      "color": "#AAAAAA"
+    }
+  },
+  {
+    "tool": "move_to",
+    "arguments": {
+      "mobject_id": "m_1324b0ab",
+      "position": [
+        0.0,
+        2.8,
+        0.0
+      ],
+      "aligned_edge": null
+    }
+  },
+  {
+    "tool": "move_to",
+    "arguments": {
+      "mobject_id": "m_d06be218",
+      "position": [
+        0.0,
+        1.8,
+        0.0
+      ],
+      "aligned_edge": null
+    }
+  },
+  {
+    "tool": "move_to",
+    "arguments": {
+      "mobject_id": "m_cbde5e1b",
+      "position": [
+        0.0,
+        1.0,
+        0.0
+      ],
+      "aligned_edge": null
+    }
+  },
+  {
+    "tool": "move_to",
+    "arguments": {
+      "mobject_id": "m_88552b10",
+      "position": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "aligned_edge": null
+    }
+  },
+  {
+    "tool": "move_to",
+    "arguments": {
+      "mobject_id": "m_08a7e56e",
+      "position": [
+        0.0,
+        -0.8,
+        0.0
+      ],
+      "aligned_edge": null
+    }
+  },
+  {
+    "tool": "move_to",
+    "arguments": {
+      "mobject_id": "m_40d86aaf",
+      "position": [
+        0.0,
+        -1.8,
+        0.0
+      ],
+      "aligned_edge": null
+    }
+  },
+  {
+    "tool": "add_tex",
+    "arguments": {
+      "tex_string": "7^{4/2} \\equiv 7^2 \\equiv 4 \\not\\equiv -1 \\pmod{15}",
+      "font_size": 26.0,
+      "color": "#FFFFFF"
+    }
+  },
+  {
+    "tool": "add_tex",
+    "arguments": {
+      "tex_string": "p = \\gcd(7^2 - 1, 15) = \\gcd(48, 15) = 3",
+      "font_size": 26.0,
+      "color": "#88FF88"
+    }
+  },
+  {
+    "tool": "add_tex",
+    "arguments": {
+      "tex_string": "q = \\gcd(7^2 + 1, 15) = \\gcd(50, 15) = 5",
+      "font_size": 26.0,
+      "color": "#88FF88"
+    }
+  },
+  {
+    "tool": "add_tex",
+    "arguments": {
+      "tex_string": "\\therefore 15 = 3 \\times 5",
+      "font_size": 32.0,
+      "color": "#FFFF00"
+    }
+  },
+  {
+    "tool": "move_to",
+    "arguments": {
+      "mobject_id": "m_061b4859",
+      "position": [
+        0.0,
+        -2.8,
+        0.0
+      ],
+      "aligned_edge": null
+    }
+  },
+  {
+    "tool": "move_to",
+    "arguments": {
+      "mobject_id": "m_fd407fb5",
+      "position": [
+        0.0,
+        -3.6,
+        0.0
+      ],
+      "aligned_edge": null
+    }
+  },
+  {
+    "tool": "move_to",
+    "arguments": {
+      "mobject_id": "m_a6900441",
+      "position": [
+        0.0,
+        -4.4,
+        0.0
+      ],
+      "aligned_edge": null
+    }
+  },
+  {
+    "tool": "move_to",
+    "arguments": {
+      "mobject_id": "m_0956f8c8",
+      "position": [
+        0.0,
+        -5.2,
+        0.0
+      ],
+      "aligned_edge": null
+    }
+  },
+  {
+    "tool": "animate_fade_in",
+    "arguments": {
+      "mobject_id": "m_1324b0ab",
+      "run_time": 0.8,
+      "shift_direction": null
+    }
+  },
+  {
+    "tool": "animate_fade_in",
+    "arguments": {
+      "mobject_id": "m_d06be218",
+      "run_time": 0.8,
+      "shift_direction": null
+    }
+  },
+  {
+    "tool": "animate_fade_in",
+    "arguments": {
+      "mobject_id": "m_cbde5e1b",
+      "run_time": 0.8,
+      "shift_direction": null
+    }
+  },
+  {
+    "tool": "animate_fade_in",
+    "arguments": {
+      "mobject_id": "m_88552b10",
+      "run_time": 0.8,
+      "shift_direction": null
+    }
+  },
+  {
+    "tool": "animate_fade_in",
+    "arguments": {
+      "mobject_id": "m_08a7e56e",
+      "run_time": 0.8,
+      "shift_direction": null
+    }
+  },
+  {
+    "tool": "animate_fade_in",
+    "arguments": {
+      "mobject_id": "m_40d86aaf",
+      "run_time": 0.8,
+      "shift_direction": null
+    }
+  },
+  {
+    "tool": "animate_fade_in",
+    "arguments": {
+      "mobject_id": "m_061b4859",
+      "run_time": 0.8,
+      "shift_direction": null
+    }
+  },
+  {
+    "tool": "animate_fade_in",
+    "arguments": {
+      "mobject_id": "m_fd407fb5",
+      "run_time": 0.8,
+      "shift_direction": null
+    }
+  },
+  {
+    "tool": "animate_fade_in",
+    "arguments": {
+      "mobject_id": "m_a6900441",
+      "run_time": 0.8,
+      "shift_direction": null
+    }
+  },
+  {
+    "tool": "animate_fade_in",
+    "arguments": {
+      "mobject_id": "m_0956f8c8",
+      "run_time": 0.8,
+      "shift_direction": null
+    }
+  },
+  {
+    "tool": "add_wait",
+    "arguments": {
+      "duration": 10.0
+    }
+  },
+  {
+    "tool": "add_narration",
+    "arguments": {
+      "text": "Step three: Classical post-processing. Once we have the order r, check if r is even. Then check if a to the r over 2 is congruent to negative 1 modulo N. If either condition fails, pick a new a. Otherwise, p is gcd of a to the r over 2 minus 1 and N, and q is gcd of a to the r over 2 plus 1 and N.",
+      "lang": "en"
+    }
+  },
+  {
+    "tool": "animate_fade_out",
+    "arguments": {
+      "mobject_id": "m_1324b0ab",
+      "run_time": 0.5
+    }
+  },
+  {
+    "tool": "animate_fade_out",
+    "arguments": {
+      "mobject_id": "m_d06be218",
+      "run_time": 0.5
+    }
+  },
+  {
+    "tool": "animate_fade_out",
+    "arguments": {
+      "mobject_id": "m_cbde5e1b",
+      "run_time": 0.5
+    }
+  },
+  {
+    "tool": "animate_fade_out",
+    "arguments": {
+      "mobject_id": "m_88552b10",
+      "run_time": 0.5
+    }
+  },
+  {
+    "tool": "animate_fade_out",
+    "arguments": {
+      "mobject_id": "m_08a7e56e",
+      "run_time": 0.5
+    }
+  },
+  {
+    "tool": "animate_fade_out",
+    "arguments": {
+      "mobject_id": "m_40d86aaf",
+      "run_time": 0.5
+    }
+  },
+  {
+    "tool": "animate_fade_out",
+    "arguments": {
+      "mobject_id": "m_061b4859",
+      "run_time": 0.5
+    }
+  },
+  {
+    "tool": "animate_fade_out",
+    "arguments": {
+      "mobject_id": "m_fd407fb5",
+      "run_time": 0.5
+    }
+  },
+  {
+    "tool": "animate_fade_out",
+    "arguments": {
+      "mobject_id": "m_a6900441",
+      "run_time": 0.5
+    }
+  },
+  {
+    "tool": "animate_fade_out",
+    "arguments": {
+      "mobject_id": "m_0956f8c8",
+      "run_time": 0.5
+    }
+  },
+  {
+    "tool": "add_text",
+    "arguments": {
+      "text": "Shor's Algorithm: Summary",
+      "font_size": 48.0,
+      "color": "#00FFAA",
+      "font": "Consolas"
+    }
+  },
+  {
+    "tool": "add_text",
+    "arguments": {
+      "text": "1. Classical Preprocessing - Pick a coprime to N",
+      "font_size": 28.0,
+      "color": "#88CCFF",
+      "font": "Consolas"
+    }
+  },
+  {
+    "tool": "add_text",
+    "arguments": {
+      "text": "2. Quantum Order Finding - Find r via QFT",
+      "font_size": 28.0,
+      "color": "#88FF88",
+      "font": "Consolas"
+    }
+  },
+  {
+    "tool": "add_text",
+    "arguments": {
+      "text": "3. Classical Post-Processing - Compute p, q",
+      "font_size": 28.0,
+      "color": "#FF8888",
+      "font": "Consolas"
+    }
+  },
+  {
+    "tool": "add_text",
+    "arguments": {
+      "text": "Exponential speedup over classical factoring",
+      "font_size": 26.0,
+      "color": "#FFFF00",
+      "font": "Consolas"
+    }
+  },
+  {
+    "tool": "add_tex",
+    "arguments": {
+      "tex_string": "O((\\log N)^3) \\text{ vs } O(e^{(\\log N)^{1/3}})",
+      "font_size": 24.0,
+      "color": "#88CCFF"
+    }
+  },
+  {
+    "tool": "move_to",
+    "arguments": {
+      "mobject_id": "m_4f275ce2",
+      "position": [
+        0.0,
+        2.8,
+        0.0
+      ],
+      "aligned_edge": null
+    }
+  },
+  {
+    "tool": "move_to",
+    "arguments": {
+      "mobject_id": "m_14469521",
+      "position": [
+        -5.0,
+        1.5,
+        0.0
+      ],
+      "aligned_edge": null
+    }
+  },
+  {
+    "tool": "move_to",
+    "arguments": {
+      "mobject_id": "m_2558b020",
+      "position": [
+        -5.0,
+        0.7,
+        0.0
+      ],
+      "aligned_edge": null
+    }
+  },
+  {
+    "tool": "move_to",
+    "arguments": {
+      "mobject_id": "m_e138f4e9",
+      "position": [
+        -5.0,
+        -0.1,
+        0.0
+      ],
+      "aligned_edge": null
+    }
+  },
+  {
+    "tool": "move_to",
+    "arguments": {
+      "mobject_id": "m_e8ad43c2",
+      "position": [
+        0.0,
+        -1.8,
+        0.0
+      ],
+      "aligned_edge": null
+    }
+  },
+  {
+    "tool": "move_to",
+    "arguments": {
+      "mobject_id": "m_13fc2c3a",
+      "position": [
+        0.0,
+        -2.8,
+        0.0
+      ],
+      "aligned_edge": null
+    }
+  },
+  {
+    "tool": "animate_fade_in",
+    "arguments": {
+      "mobject_id": "m_4f275ce2",
+      "run_time": 1.0,
+      "shift_direction": null
+    }
+  },
+  {
+    "tool": "animate_fade_in",
+    "arguments": {
+      "mobject_id": "m_14469521",
+      "run_time": 0.8,
+      "shift_direction": null
+    }
+  },
+  {
+    "tool": "animate_fade_in",
+    "arguments": {
+      "mobject_id": "m_2558b020",
+      "run_time": 0.8,
+      "shift_direction": null
+    }
+  },
+  {
+    "tool": "animate_fade_in",
+    "arguments": {
+      "mobject_id": "m_e138f4e9",
+      "run_time": 0.8,
+      "shift_direction": null
+    }
+  },
+  {
+    "tool": "animate_fade_in",
+    "arguments": {
+      "mobject_id": "m_e8ad43c2",
+      "run_time": 0.8,
+      "shift_direction": null
+    }
+  },
+  {
+    "tool": "animate_fade_in",
+    "arguments": {
+      "mobject_id": "m_13fc2c3a",
+      "run_time": 0.8,
+      "shift_direction": null
+    }
+  },
+  {
+    "tool": "add_narration",
+    "arguments": {
+      "text": "Shor's algorithm combines classical preprocessing, quantum order finding, and classical post-processing to factor composite numbers exponentially faster than classical algorithms. It runs in O log N cubed time, compared to sub-exponential time for classical methods. This breakthrough has profound implications for cryptography, particularly the RSA cryptosystem.",
+      "lang": "en"
+    }
+  },
+  {
+    "tool": "add_wait",
+    "arguments": {
+      "duration": 5.0
+    }
+  },
+  {
+    "tool": "get_scene_info",
+    "arguments": {}
+  },
+  {
+    "tool": "render_scene",
+    "arguments": {
+      "output_path": "/tmp/mcp_manimgl/shor_algorithm.mp4",
+      "fmt": "mp4"
+    }
+  },
+  {
+    "tool": "get_render_result",
+    "arguments": {
+      "render_id": "3322a00167b8"
+    }
+  },
+  {
+    "tool": "get_render_result",
+    "arguments": {
+      "render_id": "3322a00167b8"
+    }
+  },
+  {
+    "tool": "get_render_result",
+    "arguments": {
+      "render_id": "3322a00167b8"
+    }
+  },
+  {
+    "tool": "get_render_result",
+    "arguments": {
+      "render_id": "3322a00167b8"
+    }
+  },
+  {
+    "tool": "clear_scene",
+    "arguments": {}
+  },
+  {
+    "tool": "create_scene",
+    "arguments": {
+      "background_color": "#0a0a2e",
+      "resolution": "1920x1080",
+      "fps": 30,
+      "frame_height": 8.0
+    }
+  },
+  {
+    "tool": "add_background_music",
+    "arguments": {
+      "file_path": "/tmp/mcp_manimgl/classical_bg.mid",
+      "volume": 0.2,
+      "loop": true,
+      "duck_threshold": "-24dB",
+      "duck_ratio": 4.0,
+      "duck_attack": 0.1,
+      "duck_release": 0.5
+    }
+  },
+  {
+    "tool": "add_text",
+    "arguments": {
+      "text": "Shor's Algorithm",
+      "font_size": 72.0,
+      "color": "#00FFAA",
+      "font": "Consolas"
+    }
+  },
+  {
+    "tool": "add_text",
+    "arguments": {
+      "text": "Quantum Integer Factorization",
+      "font_size": 36.0,
+      "color": "#88CCFF",
+      "font": "Consolas"
+    }
+  },
+  {
+    "tool": "move_to",
+    "arguments": {
+      "mobject_id": "m_57fbb35a",
+      "position": [
+        0.0,
+        1.5,
+        0.0
+      ],
+      "aligned_edge": null
+    }
+  },
+  {
+    "tool": "move_to",
+    "arguments": {
+      "mobject_id": "m_7ed49ed8",
+      "position": [
+        0.0,
+        0.5,
+        0.0
+      ],
+      "aligned_edge": null
+    }
+  },
+  {
+    "tool": "animate_fade_in",
+    "arguments": {
+      "mobject_id": "m_57fbb35a",
+      "run_time": 2.0,
+      "shift_direction": null
+    }
+  },
+  {
+    "tool": "animate_fade_in",
+    "arguments": {
+      "mobject_id": "m_7ed49ed8",
+      "run_time": 2.0,
+      "shift_direction": null
+    }
+  },
+  {
+    "tool": "add_wait",
+    "arguments": {
+      "duration": 3.0
+    }
+  },
+  {
+    "tool": "animate_fade_out",
+    "arguments": {
+      "mobject_id": "m_57fbb35a",
+      "run_time": 0.8
+    }
+  },
+  {
+    "tool": "animate_fade_out",
+    "arguments": {
+      "mobject_id": "m_7ed49ed8",
+      "run_time": 0.8
+    }
+  },
+  {
+    "tool": "add_narration",
+    "arguments": {
+      "text": "Shor's Algorithm is a quantum algorithm for integer factorization. It can factor large composite numbers exponentially faster than any known classical algorithm.",
+      "lang": "en"
+    }
+  },
+  {
+    "tool": "add_tex",
+    "arguments": {
+      "tex_string": "N = p \\times q",
+      "font_size": 48.0,
+      "color": "#FFDD44"
+    }
+  },
+  {
+    "tool": "add_text",
+    "arguments": {
+      "text": "Given a composite number N = p x q, find p and q",
+      "font_size": 32.0,
+      "color": "#CCCCFF",
+      "font": "Consolas"
+    }
+  },
+  {
+    "tool": "add_tex",
+    "arguments": {
+      "tex_string": "15 = 3 \\times 5",
+      "font_size": 36.0,
+      "color": "#88FF88"
+    }
+  },
+  {
+    "tool": "move_to",
+    "arguments": {
+      "mobject_id": "m_29056f43",
+      "position": [
+        0.0,
+        2.5,
+        0.0
+      ],
+      "aligned_edge": null
+    }
+  },
+  {
+    "tool": "move_to",
+    "arguments": {
+      "mobject_id": "m_f1ac6ecb",
+      "position": [
+        0.0,
+        1.2,
+        0.0
+      ],
+      "aligned_edge": null
+    }
+  },
+  {
+    "tool": "move_to",
+    "arguments": {
+      "mobject_id": "m_737377d3",
+      "position": [
+        0.0,
+        -0.2,
+        0.0
+      ],
+      "aligned_edge": null
+    }
+  },
+  {
+    "tool": "animate_fade_in",
+    "arguments": {
+      "mobject_id": "m_29056f43",
+      "run_time": 1.0,
+      "shift_direction": null
+    }
+  },
+  {
+    "tool": "animate_fade_in",
+    "arguments": {
+      "mobject_id": "m_f1ac6ecb",
+      "run_time": 1.0,
+      "shift_direction": null
+    }
+  },
+  {
+    "tool": "animate_fade_in",
+    "arguments": {
+      "mobject_id": "m_737377d3",
+      "run_time": 1.0,
+      "shift_direction": null
+    }
+  },
+  {
+    "tool": "add_wait",
+    "arguments": {
+      "duration": 3.0
+    }
+  },
+  {
+    "tool": "add_narration",
+    "arguments": {
+      "text": "Shor's algorithm solves integer factorization: given N = p times q, find the primes p and q. For example, given N = 15, find factors 3 and 5.",
+      "lang": "en"
+    }
+  },
+  {
+    "tool": "animate_fade_out",
+    "arguments": {
+      "mobject_id": "m_29056f43",
+      "run_time": 0.8
+    }
+  },
+  {
+    "tool": "animate_fade_out",
+    "arguments": {
+      "mobject_id": "m_f1ac6ecb",
+      "run_time": 0.8
+    }
+  },
+  {
+    "tool": "animate_fade_out",
+    "arguments": {
+      "mobject_id": "m_737377d3",
+      "run_time": 0.8
+    }
+  },
+  {
+    "tool": "add_text",
+    "arguments": {
+      "text": "Step 1: Classical Preprocessing",
+      "font_size": 44.0,
+      "color": "#FFDD44",
+      "font": "Consolas"
+    }
+  },
+  {
+    "tool": "add_text",
+    "arguments": {
+      "text": "Pick random a coprime to N",
+      "font_size": 36.0,
+      "color": "#FFFFFF",
+      "font": "Consolas"
+    }
+  },
+  {
+    "tool": "add_tex",
+    "arguments": {
+      "tex_string": "\\gcd(a,N) \\neq 1",
+      "font_size": 36.0,
+      "color": "#88FF88"
+    }
+  },
+  {
+    "tool": "add_tex",
+    "arguments": {
+      "tex_string": "\\gcd(a,N) = 1",
+      "font_size": 36.0,
+      "color": "#88CCFF"
+    }
+  },
+  {
+    "tool": "move_to",
+    "arguments": {
+      "mobject_id": "m_b9a68f04",
+      "position": [
+        0.0,
+        2.8,
+        0.0
+      ],
+      "aligned_edge": null
+    }
+  },
+  {
+    "tool": "move_to",
+    "arguments": {
+      "mobject_id": "m_53610c6d",
+      "position": [
+        0.0,
+        1.8,
+        0.0
+      ],
+      "aligned_edge": null
+    }
+  },
+  {
+    "tool": "move_to",
+    "arguments": {
+      "mobject_id": "m_bfe85104",
+      "position": [
+        -2.0,
+        0.5,
+        0.0
+      ],
+      "aligned_edge": null
+    }
+  },
+  {
+    "tool": "move_to",
+    "arguments": {
+      "mobject_id": "m_21721954",
+      "position": [
+        -2.0,
+        -0.5,
+        0.0
+      ],
+      "aligned_edge": null
+    }
+  },
+  {
+    "tool": "add_text",
+    "arguments": {
+      "text": " -> factor found",
+      "font_size": 28.0,
+      "color": "#88FF88",
+      "font": "Consolas"
+    }
+  },
+  {
+    "tool": "add_text",
+    "arguments": {
+      "text": " -> quantum step",
+      "font_size": 28.0,
+      "color": "#88CCFF",
+      "font": "Consolas"
+    }
+  },
+  {
+    "tool": "move_to",
+    "arguments": {
+      "mobject_id": "m_d0683cd5",
+      "position": [
+        1.0,
+        0.5,
+        0.0
+      ],
+      "aligned_edge": null
+    }
+  },
+  {
+    "tool": "move_to",
+    "arguments": {
+      "mobject_id": "m_c97a03c0",
+      "position": [
+        1.0,
+        -0.5,
+        0.0
+      ],
+      "aligned_edge": null
+    }
+  },
+  {
+    "tool": "animate_fade_in",
+    "arguments": {
+      "mobject_id": "m_b9a68f04",
+      "run_time": 1.0,
+      "shift_direction": null
+    }
+  },
+  {
+    "tool": "animate_fade_in",
+    "arguments": {
+      "mobject_id": "m_53610c6d",
+      "run_time": 1.0,
+      "shift_direction": null
+    }
+  },
+  {
+    "tool": "animate_fade_in",
+    "arguments": {
+      "mobject_id": "m_bfe85104",
+      "run_time": 1.0,
+      "shift_direction": null
+    }
+  },
+  {
+    "tool": "animate_fade_in",
+    "arguments": {
+      "mobject_id": "m_21721954",
+      "run_time": 1.0,
+      "shift_direction": null
+    }
+  },
+  {
+    "tool": "animate_fade_in",
+    "arguments": {
+      "mobject_id": "m_d0683cd5",
+      "run_time": 1.0,
+      "shift_direction": null
+    }
+  },
+  {
+    "tool": "animate_fade_in",
+    "arguments": {
+      "mobject_id": "m_c97a03c0",
+      "run_time": 1.0,
+      "shift_direction": null
+    }
+  },
+  {
+    "tool": "add_wait",
+    "arguments": {
+      "duration": 3.0
+    }
+  },
+  {
+    "tool": "add_narration",
+    "arguments": {
+      "text": "Step one: Classical preprocessing. Pick a random number a coprime to N. If gcd of a and N is not 1, we found a factor. If gcd equals 1, proceed to the quantum step.",
+      "lang": "en"
+    }
+  },
+  {
+    "tool": "animate_fade_out",
+    "arguments": {
+      "mobject_id": "m_b9a68f04",
+      "run_time": 0.6
+    }
+  },
+  {
+    "tool": "animate_fade_out",
+    "arguments": {
+      "mobject_id": "m_53610c6d",
+      "run_time": 0.6
+    }
+  },
+  {
+    "tool": "animate_fade_out",
+    "arguments": {
+      "mobject_id": "m_bfe85104",
+      "run_time": 0.6
+    }
+  },
+  {
+    "tool": "animate_fade_out",
+    "arguments": {
+      "mobject_id": "m_21721954",
+      "run_time": 0.6
+    }
+  },
+  {
+    "tool": "animate_fade_out",
+    "arguments": {
+      "mobject_id": "m_d0683cd5",
+      "run_time": 0.6
+    }
+  },
+  {
+    "tool": "animate_fade_out",
+    "arguments": {
+      "mobject_id": "m_c97a03c0",
+      "run_time": 0.6
+    }
+  },
+  {
+    "tool": "add_text",
+    "arguments": {
+      "text": "Step 2: Quantum Order Finding",
+      "font_size": 44.0,
+      "color": "#FFDD44",
+      "font": "Consolas"
+    }
+  },
+  {
+    "tool": "add_text",
+    "arguments": {
+      "text": "Find smallest r such that:",
+      "font_size": 30.0,
+      "color": "#FFFFFF",
+      "font": "Consolas"
+    }
+  },
+  {
+    "tool": "add_tex",
+    "arguments": {
+      "tex_string": "a^{r} \\equiv 1 \\pmod{N}",
+      "font_size": 48.0,
+      "color": "#88CCFF"
+    }
+  },
+  {
+    "tool": "add_text",
+    "arguments": {
+      "text": "Quantum Fourier Transform + Phase Estimation",
+      "font_size": 28.0,
+      "color": "#FF8888",
+      "font": "Consolas"
+    }
+  },
+  {
+    "tool": "add_text",
+    "arguments": {
+      "text": "Example: a=7, N=15",
+      "font_size": 28.0,
+      "color": "#88FF88",
+      "font": "Consolas"
+    }
+  },
+  {
+    "tool": "move_to",
+    "arguments": {
+      "mobject_id": "m_d5f76069",
+      "position": [
+        0.0,
+        2.8,
+        0.0
+      ],
+      "aligned_edge": null
+    }
+  },
+  {
+    "tool": "move_to",
+    "arguments": {
+      "mobject_id": "m_e2501e5a",
+      "position": [
+        0.0,
+        1.8,
+        0.0
+      ],
+      "aligned_edge": null
+    }
+  },
+  {
+    "tool": "move_to",
+    "arguments": {
+      "mobject_id": "m_528216f0",
+      "position": [
+        0.0,
+        0.5,
+        0.0
+      ],
+      "aligned_edge": null
+    }
+  },
+  {
+    "tool": "move_to",
+    "arguments": {
+      "mobject_id": "m_7f41dd69",
+      "position": [
+        0.0,
+        -0.8,
+        0.0
+      ],
+      "aligned_edge": null
+    }
+  },
+  {
+    "tool": "move_to",
+    "arguments": {
+      "mobject_id": "m_cee5e3f2",
+      "position": [
+        -4.0,
+        -2.0,
+        0.0
+      ],
+      "aligned_edge": null
+    }
+  },
+  {
+    "tool": "add_tex",
+    "arguments": {
+      "tex_string": "7^{1} \\equiv 7",
+      "font_size": 26.0,
+      "color": "#AAAAAA"
+    }
+  },
+  {
+    "tool": "add_tex",
+    "arguments": {
+      "tex_string": "7^{2} \\equiv 4",
+      "font_size": 26.0,
+      "color": "#AAAAAA"
+    }
+  },
+  {
+    "tool": "add_tex",
+    "arguments": {
+      "tex_string": "7^{3} \\equiv 13",
+      "font_size": 26.0,
+      "color": "#AAAAAA"
+    }
+  },
+  {
+    "tool": "add_tex",
+    "arguments": {
+      "tex_string": "7^{4} \\equiv 1",
+      "font_size": 26.0,
+      "color": "#88FF88"
+    }
+  },
+  {
+    "tool": "add_tex",
+    "arguments": {
+      "tex_string": "r = 4",
+      "font_size": 36.0,
+      "color": "#FFFF00"
+    }
+  },
+  {
+    "tool": "move_to",
+    "arguments": {
+      "mobject_id": "m_5f229e27",
+      "position": [
+        -4.0,
+        -2.8,
+        0.0
+      ],
+      "aligned_edge": null
+    }
+  },
+  {
+    "tool": "move_to",
+    "arguments": {
+      "mobject_id": "m_56a0bb13",
+      "position": [
+        -4.0,
+        -3.6,
+        0.0
+      ],
+      "aligned_edge": null
+    }
+  },
+  {
+    "tool": "move_to",
+    "arguments": {
+      "mobject_id": "m_80bc5df3",
+      "position": [
+        -4.0,
+        -4.4,
+        0.0
+      ],
+      "aligned_edge": null
+    }
+  },
+  {
+    "tool": "move_to",
+    "arguments": {
+      "mobject_id": "m_ae61a694",
+      "position": [
+        -4.0,
+        -5.2,
+        0.0
+      ],
+      "aligned_edge": null
+    }
+  },
+  {
+    "tool": "move_to",
+    "arguments": {
+      "mobject_id": "m_66a93285",
+      "position": [
+        -4.0,
+        -6.2,
+        0.0
+      ],
+      "aligned_edge": null
+    }
+  },
+  {
+    "tool": "animate_fade_in",
+    "arguments": {
+      "mobject_id": "m_d5f76069",
+      "run_time": 1.0,
+      "shift_direction": null
+    }
+  },
+  {
+    "tool": "animate_fade_in",
+    "arguments": {
+      "mobject_id": "m_e2501e5a",
+      "run_time": 1.0,
+      "shift_direction": null
+    }
+  },
+  {
+    "tool": "animate_fade_in",
+    "arguments": {
+      "mobject_id": "m_528216f0",
+      "run_time": 1.5,
+      "shift_direction": null
+    }
+  },
+  {
+    "tool": "animate_fade_in",
+    "arguments": {
+      "mobject_id": "m_7f41dd69",
+      "run_time": 1.0,
+      "shift_direction": null
+    }
+  },
+  {
+    "tool": "animate_fade_in",
+    "arguments": {
+      "mobject_id": "m_cee5e3f2",
+      "run_time": 1.0,
+      "shift_direction": null
+    }
+  },
+  {
+    "tool": "animate_fade_in",
+    "arguments": {
+      "mobject_id": "m_5f229e27",
+      "run_time": 0.5,
+      "shift_direction": null
+    }
+  },
+  {
+    "tool": "animate_fade_in",
+    "arguments": {
+      "mobject_id": "m_56a0bb13",
+      "run_time": 0.5,
+      "shift_direction": null
+    }
+  },
+  {
+    "tool": "animate_fade_in",
+    "arguments": {
+      "mobject_id": "m_80bc5df3",
+      "run_time": 0.5,
+      "shift_direction": null
+    }
+  },
+  {
+    "tool": "animate_fade_in",
+    "arguments": {
+      "mobject_id": "m_ae61a694",
+      "run_time": 0.8,
+      "shift_direction": null
+    }
+  },
+  {
+    "tool": "animate_fade_in",
+    "arguments": {
+      "mobject_id": "m_66a93285",
+      "run_time": 1.0,
+      "shift_direction": null
+    }
+  },
+  {
+    "tool": "add_wait",
+    "arguments": {
+      "duration": 4.0
+    }
+  },
+  {
+    "tool": "add_narration",
+    "arguments": {
+      "text": "Step two: Quantum order finding. Find the order r such that a to the r is congruent to 1 modulo N. This uses the quantum Fourier transform and phase estimation. For a equals 7 and N equals 15, the powers of 7 mod 15 are 7, 4, 13, and 1, so r equals 4.",
+      "lang": "en"
+    }
+  },
+  {
+    "tool": "animate_fade_out",
+    "arguments": {
+      "mobject_id": "m_d5f76069",
+      "run_time": 0.5
+    }
+  },
+  {
+    "tool": "animate_fade_out",
+    "arguments": {
+      "mobject_id": "m_e2501e5a",
+      "run_time": 0.5
+    }
+  },
+  {
+    "tool": "animate_fade_out",
+    "arguments": {
+      "mobject_id": "m_528216f0",
+      "run_time": 0.5
+    }
+  },
+  {
+    "tool": "animate_fade_out",
+    "arguments": {
+      "mobject_id": "m_7f41dd69",
+      "run_time": 0.5
+    }
+  },
+  {
+    "tool": "animate_fade_out",
+    "arguments": {
+      "mobject_id": "m_cee5e3f2",
+      "run_time": 0.5
+    }
+  },
+  {
+    "tool": "animate_fade_out",
+    "arguments": {
+      "mobject_id": "m_5f229e27",
+      "run_time": 0.5
+    }
+  },
+  {
+    "tool": "animate_fade_out",
+    "arguments": {
+      "mobject_id": "m_56a0bb13",
+      "run_time": 0.5
+    }
+  },
+  {
+    "tool": "animate_fade_out",
+    "arguments": {
+      "mobject_id": "m_80bc5df3",
+      "run_time": 0.5
+    }
+  },
+  {
+    "tool": "animate_fade_out",
+    "arguments": {
+      "mobject_id": "m_ae61a694",
+      "run_time": 0.5
+    }
+  },
+  {
+    "tool": "animate_fade_out",
+    "arguments": {
+      "mobject_id": "m_66a93285",
+      "run_time": 0.5
+    }
+  },
+  {
+    "tool": "add_text",
+    "arguments": {
+      "text": "Step 3: Classical Post-Processing",
+      "font_size": 44.0,
+      "color": "#FFDD44",
+      "font": "Consolas"
+    }
+  },
+  {
+    "tool": "add_tex",
+    "arguments": {
+      "tex_string": "r \\text{ odd } \\implies \\text{ retry}",
+      "font_size": 28.0,
+      "color": "#FF8888"
+    }
+  },
+  {
+    "tool": "add_tex",
+    "arguments": {
+      "tex_string": "a^{r/2} \\equiv -1 \\pmod{N} \\implies \\text{ retry}",
+      "font_size": 28.0,
+      "color": "#FF8888"
+    }
+  },
+  {
+    "tool": "add_tex",
+    "arguments": {
+      "tex_string": "p = \\gcd(a^{r/2} - 1, N)",
+      "font_size": 32.0,
+      "color": "#88FF88"
+    }
+  },
+  {
+    "tool": "add_tex",
+    "arguments": {
+      "tex_string": "q = \\gcd(a^{r/2} + 1, N)",
+      "font_size": 32.0,
+      "color": "#88FF88"
+    }
+  },
+  {
+    "tool": "clear_scene",
+    "arguments": {}
+  },
+  {
+    "tool": "create_scene",
+    "arguments": {
+      "background_color": "#0a0a2e",
+      "resolution": "1920x1080",
+      "fps": 30,
+      "frame_height": 8.0
+    }
+  },
+  {
+    "tool": "add_background_music",
+    "arguments": {
+      "file_path": "/tmp/mcp_manimgl/classical_bg.mid",
+      "volume": 0.2,
+      "loop": true,
+      "duck_threshold": "-24dB",
+      "duck_ratio": 4.0,
+      "duck_attack": 0.1,
+      "duck_release": 0.5
+    }
+  },
+  {
+    "tool": "add_text",
+    "arguments": {
+      "text": "Shor's Algorithm",
+      "font_size": 72.0,
+      "color": "#00FFAA",
+      "font": "Consolas"
+    }
+  },
+  {
+    "tool": "add_text",
+    "arguments": {
+      "text": "Quantum Integer Factorization",
+      "font_size": 36.0,
+      "color": "#88CCFF",
+      "font": "Consolas"
+    }
+  },
+  {
+    "tool": "move_to",
+    "arguments": {
+      "mobject_id": "m_414703e5",
+      "position": [
+        0.0,
+        1.5,
+        0.0
+      ],
+      "aligned_edge": null
+    }
+  },
+  {
+    "tool": "move_to",
+    "arguments": {
+      "mobject_id": "m_40db4048",
+      "position": [
+        0.0,
+        0.5,
+        0.0
+      ],
+      "aligned_edge": null
+    }
+  },
+  {
+    "tool": "animate_fade_in",
+    "arguments": {
+      "mobject_id": "m_414703e5",
+      "run_time": 2.0,
+      "shift_direction": null
+    }
+  },
+  {
+    "tool": "animate_fade_in",
+    "arguments": {
+      "mobject_id": "m_40db4048",
+      "run_time": 2.0,
+      "shift_direction": null
+    }
+  },
+  {
+    "tool": "add_wait",
+    "arguments": {
+      "duration": 3.0
+    }
+  },
+  {
+    "tool": "animate_fade_out",
+    "arguments": {
+      "mobject_id": "m_414703e5",
+      "run_time": 0.8
+    }
+  },
+  {
+    "tool": "animate_fade_out",
+    "arguments": {
+      "mobject_id": "m_40db4048",
+      "run_time": 0.8
+    }
+  },
+  {
+    "tool": "add_narration",
+    "arguments": {
+      "text": "Shor's Algorithm is a quantum algorithm for integer factorization. It can factor large composite numbers exponentially faster than any known classical algorithm.",
+      "lang": "en"
+    }
+  },
+  {
+    "tool": "add_tex",
+    "arguments": {
+      "tex_string": "N = p \\times q",
+      "font_size": 48.0,
+      "color": "#FFDD44"
+    }
+  },
+  {
+    "tool": "add_text",
+    "arguments": {
+      "text": "Given N = p x q, find the prime factors p and q",
+      "font_size": 32.0,
+      "color": "#CCCCFF",
+      "font": "Consolas"
+    }
+  },
+  {
+    "tool": "add_tex",
+    "arguments": {
+      "tex_string": "15 = 3 \\times 5",
+      "font_size": 36.0,
+      "color": "#88FF88"
+    }
+  },
+  {
+    "tool": "move_to",
+    "arguments": {
+      "mobject_id": "m_2bd943ff",
+      "position": [
+        0.0,
+        2.5,
+        0.0
+      ],
+      "aligned_edge": null
+    }
+  },
+  {
+    "tool": "move_to",
+    "arguments": {
+      "mobject_id": "m_5bd98f9f",
+      "position": [
+        0.0,
+        1.2,
+        0.0
+      ],
+      "aligned_edge": null
+    }
+  },
+  {
+    "tool": "move_to",
+    "arguments": {
+      "mobject_id": "m_2539dde6",
+      "position": [
+        0.0,
+        -0.2,
+        0.0
+      ],
+      "aligned_edge": null
+    }
+  },
+  {
+    "tool": "animate_fade_in",
+    "arguments": {
+      "mobject_id": "m_2bd943ff",
+      "run_time": 1.0,
+      "shift_direction": null
+    }
+  },
+  {
+    "tool": "animate_fade_in",
+    "arguments": {
+      "mobject_id": "m_5bd98f9f",
+      "run_time": 1.0,
+      "shift_direction": null
+    }
+  },
+  {
+    "tool": "animate_fade_in",
+    "arguments": {
+      "mobject_id": "m_2539dde6",
+      "run_time": 1.0,
+      "shift_direction": null
+    }
+  },
+  {
+    "tool": "add_wait",
+    "arguments": {
+      "duration": 3.0
+    }
+  },
+  {
+    "tool": "add_narration",
+    "arguments": {
+      "text": "Shor's algorithm solves integer factorization: given N = p times q, find the primes p and q. For example, N = 15 has factors 3 and 5.",
+      "lang": "en"
+    }
+  },
+  {
+    "tool": "animate_fade_out",
+    "arguments": {
+      "mobject_id": "m_2bd943ff",
+      "run_time": 0.8
+    }
+  },
+  {
+    "tool": "animate_fade_out",
+    "arguments": {
+      "mobject_id": "m_5bd98f9f",
+      "run_time": 0.8
+    }
+  },
+  {
+    "tool": "animate_fade_out",
+    "arguments": {
+      "mobject_id": "m_2539dde6",
+      "run_time": 0.8
+    }
+  },
+  {
+    "tool": "add_text",
+    "arguments": {
+      "text": "Step 1: Classical Preprocessing",
+      "font_size": 44.0,
+      "color": "#FFDD44",
+      "font": "Consolas"
+    }
+  },
+  {
+    "tool": "add_text",
+    "arguments": {
+      "text": "Pick random a coprime to N",
+      "font_size": 36.0,
+      "color": "#FFFFFF",
+      "font": "Consolas"
+    }
+  },
+  {
+    "tool": "add_tex",
+    "arguments": {
+      "tex_string": "\\gcd(a,N) \\neq 1",
+      "font_size": 32.0,
+      "color": "#88FF88"
+    }
+  },
+  {
+    "tool": "add_text",
+    "arguments": {
+      "text": "-> Factor found!",
+      "font_size": 28.0,
+      "color": "#88FF88",
+      "font": "Consolas"
+    }
+  },
+  {
+    "tool": "add_tex",
+    "arguments": {
+      "tex_string": "\\gcd(a,N) = 1",
+      "font_size": 32.0,
+      "color": "#88CCFF"
+    }
+  },
+  {
+    "tool": "add_text",
+    "arguments": {
+      "text": "-> Quantum step",
+      "font_size": 28.0,
+      "color": "#88CCFF",
+      "font": "Consolas"
+    }
+  },
+  {
+    "tool": "move_to",
+    "arguments": {
+      "mobject_id": "m_a2302b39",
+      "position": [
+        0.0,
+        2.8,
+        0.0
+      ],
+      "aligned_edge": null
+    }
+  },
+  {
+    "tool": "move_to",
+    "arguments": {
+      "mobject_id": "m_eb900e45",
+      "position": [
+        0.0,
+        1.8,
+        0.0
+      ],
+      "aligned_edge": null
+    }
+  },
+  {
+    "tool": "move_to",
+    "arguments": {
+      "mobject_id": "m_affe4222",
+      "position": [
+        -2.0,
+        0.5,
+        0.0
+      ],
+      "aligned_edge": null
+    }
+  },
+  {
+    "tool": "move_to",
+    "arguments": {
+      "mobject_id": "m_20021a93",
+      "position": [
+        1.0,
+        0.5,
+        0.0
+      ],
+      "aligned_edge": null
+    }
+  },
+  {
+    "tool": "move_to",
+    "arguments": {
+      "mobject_id": "m_8092b5f6",
+      "position": [
+        -2.0,
+        -0.5,
+        0.0
+      ],
+      "aligned_edge": null
+    }
+  },
+  {
+    "tool": "move_to",
+    "arguments": {
+      "mobject_id": "m_9a14cf3c",
+      "position": [
+        1.0,
+        -0.5,
+        0.0
+      ],
+      "aligned_edge": null
+    }
+  },
+  {
+    "tool": "animate_fade_in",
+    "arguments": {
+      "mobject_id": "m_a2302b39",
+      "run_time": 1.0,
+      "shift_direction": null
+    }
+  },
+  {
+    "tool": "animate_fade_in",
+    "arguments": {
+      "mobject_id": "m_eb900e45",
+      "run_time": 1.0,
+      "shift_direction": null
+    }
+  },
+  {
+    "tool": "animate_fade_in",
+    "arguments": {
+      "mobject_id": "m_affe4222",
+      "run_time": 0.8,
+      "shift_direction": null
+    }
+  },
+  {
+    "tool": "animate_fade_in",
+    "arguments": {
+      "mobject_id": "m_20021a93",
+      "run_time": 0.8,
+      "shift_direction": null
+    }
+  },
+  {
+    "tool": "animate_fade_in",
+    "arguments": {
+      "mobject_id": "m_8092b5f6",
+      "run_time": 0.8,
+      "shift_direction": null
+    }
+  },
+  {
+    "tool": "animate_fade_in",
+    "arguments": {
+      "mobject_id": "m_9a14cf3c",
+      "run_time": 0.8,
+      "shift_direction": null
+    }
+  },
+  {
+    "tool": "add_wait",
+    "arguments": {
+      "duration": 3.0
+    }
+  },
+  {
+    "tool": "add_narration",
+    "arguments": {
+      "text": "Step one: Classical preprocessing. Pick a random a coprime to N. If gcd of a and N is not 1, we found a factor. If gcd equals 1, proceed to the quantum step.",
+      "lang": "en"
+    }
+  },
+  {
+    "tool": "animate_fade_out",
+    "arguments": {
+      "mobject_id": "m_a2302b39",
+      "run_time": 0.6
+    }
+  },
+  {
+    "tool": "animate_fade_out",
+    "arguments": {
+      "mobject_id": "m_eb900e45",
+      "run_time": 0.6
+    }
+  },
+  {
+    "tool": "animate_fade_out",
+    "arguments": {
+      "mobject_id": "m_affe4222",
+      "run_time": 0.6
+    }
+  },
+  {
+    "tool": "animate_fade_out",
+    "arguments": {
+      "mobject_id": "m_20021a93",
+      "run_time": 0.6
+    }
+  },
+  {
+    "tool": "animate_fade_out",
+    "arguments": {
+      "mobject_id": "m_8092b5f6",
+      "run_time": 0.6
+    }
+  },
+  {
+    "tool": "animate_fade_out",
+    "arguments": {
+      "mobject_id": "m_9a14cf3c",
+      "run_time": 0.6
+    }
+  },
+  {
+    "tool": "add_text",
+    "arguments": {
+      "text": "Step 2: Quantum Order Finding",
+      "font_size": 44.0,
+      "color": "#FFDD44",
+      "font": "Consolas"
+    }
+  },
+  {
+    "tool": "add_text",
+    "arguments": {
+      "text": "Find smallest r such that",
+      "font_size": 30.0,
+      "color": "#FFFFFF",
+      "font": "Consolas"
+    }
+  },
+  {
+    "tool": "add_tex",
+    "arguments": {
+      "tex_string": "a^{r} \\equiv 1 \\pmod{N}",
+      "font_size": 48.0,
+      "color": "#88CCFF"
+    }
+  },
+  {
+    "tool": "add_text",
+    "arguments": {
+      "text": "Quantum Fourier Transform + Phase Estimation",
+      "font_size": 28.0,
+      "color": "#FF8888",
+      "font": "Consolas"
+    }
+  },
+  {
+    "tool": "add_text",
+    "arguments": {
+      "text": "Example: a = 7, N = 15",
+      "font_size": 28.0,
+      "color": "#88FF88",
+      "font": "Consolas"
+    }
+  },
+  {
+    "tool": "add_tex",
+    "arguments": {
+      "tex_string": "7^{1} \\equiv 7",
+      "font_size": 26.0,
+      "color": "#AAAAAA"
+    }
+  },
+  {
+    "tool": "add_tex",
+    "arguments": {
+      "tex_string": "7^{2} \\equiv 4",
+      "font_size": 26.0,
+      "color": "#AAAAAA"
+    }
+  },
+  {
+    "tool": "add_tex",
+    "arguments": {
+      "tex_string": "7^{3} \\equiv 13",
+      "font_size": 26.0,
+      "color": "#AAAAAA"
+    }
+  },
+  {
+    "tool": "add_tex",
+    "arguments": {
+      "tex_string": "7^{4} \\equiv 1",
+      "font_size": 26.0,
+      "color": "#88FF88"
+    }
+  },
+  {
+    "tool": "add_tex",
+    "arguments": {
+      "tex_string": "r = 4",
+      "font_size": 36.0,
+      "color": "#FFFF00"
+    }
+  },
+  {
+    "tool": "move_to",
+    "arguments": {
+      "mobject_id": "m_8b1c4605",
+      "position": [
+        0.0,
+        2.8,
+        0.0
+      ],
+      "aligned_edge": null
+    }
+  },
+  {
+    "tool": "move_to",
+    "arguments": {
+      "mobject_id": "m_6a1391db",
+      "position": [
+        0.0,
+        1.8,
+        0.0
+      ],
+      "aligned_edge": null
+    }
+  },
+  {
+    "tool": "move_to",
+    "arguments": {
+      "mobject_id": "m_6e55f0c7",
+      "position": [
+        0.0,
+        0.5,
+        0.0
+      ],
+      "aligned_edge": null
+    }
+  },
+  {
+    "tool": "move_to",
+    "arguments": {
+      "mobject_id": "m_77c998a9",
+      "position": [
+        0.0,
+        -0.8,
+        0.0
+      ],
+      "aligned_edge": null
+    }
+  },
+  {
+    "tool": "move_to",
+    "arguments": {
+      "mobject_id": "m_16518a36",
+      "position": [
+        -4.0,
+        -2.0,
+        0.0
+      ],
+      "aligned_edge": null
+    }
+  },
+  {
+    "tool": "move_to",
+    "arguments": {
+      "mobject_id": "m_49e23e26",
+      "position": [
+        -4.0,
+        -2.8,
+        0.0
+      ],
+      "aligned_edge": null
+    }
+  },
+  {
+    "tool": "move_to",
+    "arguments": {
+      "mobject_id": "m_34b84788",
+      "position": [
+        -4.0,
+        -3.6,
+        0.0
+      ],
+      "aligned_edge": null
+    }
+  },
+  {
+    "tool": "move_to",
+    "arguments": {
+      "mobject_id": "m_8f2c4f1d",
+      "position": [
+        -4.0,
+        -4.4,
+        0.0
+      ],
+      "aligned_edge": null
+    }
+  },
+  {
+    "tool": "move_to",
+    "arguments": {
+      "mobject_id": "m_c1715ff4",
+      "position": [
+        -4.0,
+        -5.2,
+        0.0
+      ],
+      "aligned_edge": null
+    }
+  },
+  {
+    "tool": "move_to",
+    "arguments": {
+      "mobject_id": "m_e7cac6fa",
+      "position": [
+        -4.0,
+        -6.2,
+        0.0
+      ],
+      "aligned_edge": null
+    }
+  },
+  {
+    "tool": "animate_fade_in",
+    "arguments": {
+      "mobject_id": "m_8b1c4605",
+      "run_time": 1.0,
+      "shift_direction": null
+    }
+  },
+  {
+    "tool": "animate_fade_in",
+    "arguments": {
+      "mobject_id": "m_6a1391db",
+      "run_time": 1.0,
+      "shift_direction": null
+    }
+  },
+  {
+    "tool": "animate_fade_in",
+    "arguments": {
+      "mobject_id": "m_6e55f0c7",
+      "run_time": 1.5,
+      "shift_direction": null
+    }
+  },
+  {
+    "tool": "animate_fade_in",
+    "arguments": {
+      "mobject_id": "m_77c998a9",
+      "run_time": 1.0,
+      "shift_direction": null
+    }
+  },
+  {
+    "tool": "animate_fade_in",
+    "arguments": {
+      "mobject_id": "m_16518a36",
+      "run_time": 1.0,
+      "shift_direction": null
+    }
+  },
+  {
+    "tool": "animate_fade_in",
+    "arguments": {
+      "mobject_id": "m_49e23e26",
+      "run_time": 0.5,
+      "shift_direction": null
+    }
+  },
+  {
+    "tool": "animate_fade_in",
+    "arguments": {
+      "mobject_id": "m_34b84788",
+      "run_time": 0.5,
+      "shift_direction": null
+    }
+  },
+  {
+    "tool": "animate_fade_in",
+    "arguments": {
+      "mobject_id": "m_8f2c4f1d",
+      "run_time": 0.5,
+      "shift_direction": null
+    }
+  },
+  {
+    "tool": "animate_fade_in",
+    "arguments": {
+      "mobject_id": "m_c1715ff4",
+      "run_time": 0.8,
+      "shift_direction": null
+    }
+  },
+  {
+    "tool": "animate_fade_in",
+    "arguments": {
+      "mobject_id": "m_e7cac6fa",
+      "run_time": 1.0,
+      "shift_direction": null
+    }
+  },
+  {
+    "tool": "add_wait",
+    "arguments": {
+      "duration": 5.0
+    }
+  },
+  {
+    "tool": "add_narration",
+    "arguments": {
+      "text": "Step two: Quantum order finding. Find the order r such that a to the r is congruent to 1 modulo N, using the quantum Fourier transform. For a equals 7 and N equals 15, we see 7 to the 1 is 7, 7 squared is 4, 7 cubed is 13, and 7 to the 4th is 1 modulo 15. So r equals 4.",
+      "lang": "en"
+    }
+  },
+  {
+    "tool": "animate_fade_out",
+    "arguments": {
+      "mobject_id": "m_8b1c4605",
+      "run_time": 0.5
+    }
+  },
+  {
+    "tool": "animate_fade_out",
+    "arguments": {
+      "mobject_id": "m_6a1391db",
+      "run_time": 0.5
+    }
+  },
+  {
+    "tool": "animate_fade_out",
+    "arguments": {
+      "mobject_id": "m_6e55f0c7",
+      "run_time": 0.5
+    }
+  },
+  {
+    "tool": "animate_fade_out",
+    "arguments": {
+      "mobject_id": "m_77c998a9",
+      "run_time": 0.5
+    }
+  },
+  {
+    "tool": "animate_fade_out",
+    "arguments": {
+      "mobject_id": "m_16518a36",
+      "run_time": 0.5
+    }
+  },
+  {
+    "tool": "animate_fade_out",
+    "arguments": {
+      "mobject_id": "m_49e23e26",
+      "run_time": 0.5
+    }
+  },
+  {
+    "tool": "animate_fade_out",
+    "arguments": {
+      "mobject_id": "m_34b84788",
+      "run_time": 0.5
+    }
+  },
+  {
+    "tool": "animate_fade_out",
+    "arguments": {
+      "mobject_id": "m_8f2c4f1d",
+      "run_time": 0.5
+    }
+  },
+  {
+    "tool": "animate_fade_out",
+    "arguments": {
+      "mobject_id": "m_c1715ff4",
+      "run_time": 0.5
+    }
+  },
+  {
+    "tool": "animate_fade_out",
+    "arguments": {
+      "mobject_id": "m_e7cac6fa",
+      "run_time": 0.5
+    }
+  },
+  {
+    "tool": "add_text",
+    "arguments": {
+      "text": "Step 3: Classical Post-Processing",
+      "font_size": 44.0,
+      "color": "#FFDD44",
+      "font": "Consolas"
+    }
+  },
+  {
+    "tool": "add_text",
+    "arguments": {
+      "text": "If r is odd, pick new a",
+      "font_size": 28.0,
+      "color": "#FF8888",
+      "font": "Consolas"
+    }
+  },
+  {
+    "tool": "add_tex",
+    "arguments": {
+      "tex_string": "a^{r/2} \\equiv -1 \\pmod{N}",
+      "font_size": 28.0,
+      "color": "#FF8888"
+    }
+  },
+  {
+    "tool": "add_text",
+    "arguments": {
+      "text": "-> pick new a",
+      "font_size": 26.0,
+      "color": "#FF8888",
+      "font": "Consolas"
+    }
+  },
+  {
+    "tool": "add_tex",
+    "arguments": {
+      "tex_string": "p = \\gcd(a^{r/2} - 1, N)",
+      "font_size": 32.0,
+      "color": "#88FF88"
+    }
+  },
+  {
+    "tool": "add_tex",
+    "arguments": {
+      "tex_string": "q = \\gcd(a^{r/2} + 1, N)",
+      "font_size": 32.0,
+      "color": "#88FF88"
+    }
+  },
+  {
+    "tool": "add_tex",
+    "arguments": {
+      "tex_string": "p = \\gcd(7^2 - 1, 15) = 3",
+      "font_size": 26.0,
+      "color": "#88FF88"
+    }
+  },
+  {
+    "tool": "add_tex",
+    "arguments": {
+      "tex_string": "q = \\gcd(7^2 + 1, 15) = 5",
+      "font_size": 26.0,
+      "color": "#88FF88"
+    }
+  },
+  {
+    "tool": "add_tex",
+    "arguments": {
+      "tex_string": "15 = 3 \\times 5",
+      "font_size": 36.0,
+      "color": "#FFFF00"
+    }
+  },
+  {
+    "tool": "move_to",
+    "arguments": {
+      "mobject_id": "m_06d1bf11",
+      "position": [
+        0.0,
+        2.8,
+        0.0
+      ],
+      "aligned_edge": null
+    }
+  },
+  {
+    "tool": "move_to",
+    "arguments": {
+      "mobject_id": "m_9d4a4ba9",
+      "position": [
+        -4.0,
+        1.8,
+        0.0
+      ],
+      "aligned_edge": null
+    }
+  },
+  {
+    "tool": "move_to",
+    "arguments": {
+      "mobject_id": "m_74a7939a",
+      "position": [
+        -4.0,
+        0.8,
+        0.0
+      ],
+      "aligned_edge": null
+    }
+  },
+  {
+    "tool": "move_to",
+    "arguments": {
+      "mobject_id": "m_b884de64",
+      "position": [
+        1.0,
+        0.8,
+        0.0
+      ],
+      "aligned_edge": null
+    }
+  },
+  {
+    "tool": "move_to",
+    "arguments": {
+      "mobject_id": "m_3aa6835a",
+      "position": [
+        -4.0,
+        -0.2,
+        0.0
+      ],
+      "aligned_edge": null
+    }
+  },
+  {
+    "tool": "move_to",
+    "arguments": {
+      "mobject_id": "m_eeff6247",
+      "position": [
+        -4.0,
+        -1.0,
+        0.0
+      ],
+      "aligned_edge": null
+    }
+  },
+  {
+    "tool": "move_to",
+    "arguments": {
+      "mobject_id": "m_12447040",
+      "position": [
+        -2.0,
+        -2.5,
+        0.0
+      ],
+      "aligned_edge": null
+    }
+  },
+  {
+    "tool": "move_to",
+    "arguments": {
+      "mobject_id": "m_a414ad47",
+      "position": [
+        -2.0,
+        -3.5,
+        0.0
+      ],
+      "aligned_edge": null
+    }
+  },
+  {
+    "tool": "move_to",
+    "arguments": {
+      "mobject_id": "m_3f0ba26b",
+      "position": [
+        0.0,
+        -5.0,
+        0.0
+      ],
+      "aligned_edge": null
+    }
+  },
+  {
+    "tool": "animate_fade_in",
+    "arguments": {
+      "mobject_id": "m_06d1bf11",
+      "run_time": 1.0,
+      "shift_direction": null
+    }
+  },
+  {
+    "tool": "animate_fade_in",
+    "arguments": {
+      "mobject_id": "m_9d4a4ba9",
+      "run_time": 0.8,
+      "shift_direction": null
+    }
+  },
+  {
+    "tool": "animate_fade_in",
+    "arguments": {
+      "mobject_id": "m_74a7939a",
+      "run_time": 0.8,
+      "shift_direction": null
+    }
+  },
+  {
+    "tool": "animate_fade_in",
+    "arguments": {
+      "mobject_id": "m_b884de64",
+      "run_time": 0.8,
+      "shift_direction": null
+    }
+  },
+  {
+    "tool": "animate_fade_in",
+    "arguments": {
+      "mobject_id": "m_3aa6835a",
+      "run_time": 0.8,
+      "shift_direction": null
+    }
+  },
+  {
+    "tool": "animate_fade_in",
+    "arguments": {
+      "mobject_id": "m_eeff6247",
+      "run_time": 0.8,
+      "shift_direction": null
+    }
+  },
+  {
+    "tool": "animate_fade_in",
+    "arguments": {
+      "mobject_id": "m_12447040",
+      "run_time": 0.8,
+      "shift_direction": null
+    }
+  },
+  {
+    "tool": "animate_fade_in",
+    "arguments": {
+      "mobject_id": "m_a414ad47",
+      "run_time": 0.8,
+      "shift_direction": null
+    }
+  },
+  {
+    "tool": "animate_fade_in",
+    "arguments": {
+      "mobject_id": "m_3f0ba26b",
+      "run_time": 1.0,
+      "shift_direction": null
+    }
+  },
+  {
+    "tool": "add_wait",
+    "arguments": {
+      "duration": 8.0
+    }
+  },
+  {
+    "tool": "add_narration",
+    "arguments": {
+      "text": "Step three: Classical post-processing. If r is odd, pick a new a. If a to the r over 2 is congruent to negative 1 modulo N, also pick a new a. Otherwise, p equals gcd of a to the r over 2 minus 1 and N, and q equals gcd of a to the r over 2 plus 1 and N. For our example, with r equals 4, we get p equals gcd of 48 and 15 equals 3, and q equals gcd of 50 and 15 equals 5. So 15 equals 3 times 5.",
+      "lang": "en"
+    }
+  },
+  {
+    "tool": "animate_fade_out",
+    "arguments": {
+      "mobject_id": "m_06d1bf11",
+      "run_time": 0.5
+    }
+  },
+  {
+    "tool": "animate_fade_out",
+    "arguments": {
+      "mobject_id": "m_9d4a4ba9",
+      "run_time": 0.5
+    }
+  },
+  {
+    "tool": "animate_fade_out",
+    "arguments": {
+      "mobject_id": "m_74a7939a",
+      "run_time": 0.5
+    }
+  },
+  {
+    "tool": "animate_fade_out",
+    "arguments": {
+      "mobject_id": "m_b884de64",
+      "run_time": 0.5
+    }
+  },
+  {
+    "tool": "animate_fade_out",
+    "arguments": {
+      "mobject_id": "m_3aa6835a",
+      "run_time": 0.5
+    }
+  },
+  {
+    "tool": "animate_fade_out",
+    "arguments": {
+      "mobject_id": "m_eeff6247",
+      "run_time": 0.5
+    }
+  },
+  {
+    "tool": "animate_fade_out",
+    "arguments": {
+      "mobject_id": "m_12447040",
+      "run_time": 0.5
+    }
+  },
+  {
+    "tool": "animate_fade_out",
+    "arguments": {
+      "mobject_id": "m_a414ad47",
+      "run_time": 0.5
+    }
+  },
+  {
+    "tool": "animate_fade_out",
+    "arguments": {
+      "mobject_id": "m_3f0ba26b",
+      "run_time": 0.5
+    }
+  },
+  {
+    "tool": "add_text",
+    "arguments": {
+      "text": "Shor's Algorithm: Summary",
+      "font_size": 48.0,
+      "color": "#00FFAA",
+      "font": "Consolas"
+    }
+  },
+  {
+    "tool": "add_text",
+    "arguments": {
+      "text": "1. Classical Preprocessing (pick a coprime to N)",
+      "font_size": 28.0,
+      "color": "#88CCFF",
+      "font": "Consolas"
+    }
+  },
+  {
+    "tool": "add_text",
+    "arguments": {
+      "text": "2. Quantum Order Finding (find r via QFT)",
+      "font_size": 28.0,
+      "color": "#88FF88",
+      "font": "Consolas"
+    }
+  },
+  {
+    "tool": "add_text",
+    "arguments": {
+      "text": "3. Classical Post-Processing (compute p, q)",
+      "font_size": 28.0,
+      "color": "#FF8888",
+      "font": "Consolas"
+    }
+  },
+  {
+    "tool": "add_text",
+    "arguments": {
+      "text": "Exponential speedup over classical factoring",
+      "font_size": 26.0,
+      "color": "#FFFF00",
+      "font": "Consolas"
+    }
+  },
+  {
+    "tool": "add_tex",
+    "arguments": {
+      "tex_string": "O((\\log N)^3)",
+      "font_size": 24.0,
+      "color": "#88CCFF"
+    }
+  },
+  {
+    "tool": "move_to",
+    "arguments": {
+      "mobject_id": "m_f58c55af",
+      "position": [
+        0.0,
+        2.8,
+        0.0
+      ],
+      "aligned_edge": null
+    }
+  },
+  {
+    "tool": "move_to",
+    "arguments": {
+      "mobject_id": "m_872dc303",
+      "position": [
+        -5.0,
+        1.5,
+        0.0
+      ],
+      "aligned_edge": null
+    }
+  },
+  {
+    "tool": "move_to",
+    "arguments": {
+      "mobject_id": "m_65fb28f9",
+      "position": [
+        -5.0,
+        0.7,
+        0.0
+      ],
+      "aligned_edge": null
+    }
+  },
+  {
+    "tool": "move_to",
+    "arguments": {
+      "mobject_id": "m_e5a578ca",
+      "position": [
+        -5.0,
+        -0.1,
+        0.0
+      ],
+      "aligned_edge": null
+    }
+  },
+  {
+    "tool": "move_to",
+    "arguments": {
+      "mobject_id": "m_80de1bec",
+      "position": [
+        0.0,
+        -1.8,
+        0.0
+      ],
+      "aligned_edge": null
+    }
+  },
+  {
+    "tool": "move_to",
+    "arguments": {
+      "mobject_id": "m_d0f7d716",
+      "position": [
+        0.0,
+        -2.8,
+        0.0
+      ],
+      "aligned_edge": null
+    }
+  },
+  {
+    "tool": "animate_fade_in",
+    "arguments": {
+      "mobject_id": "m_f58c55af",
+      "run_time": 1.0,
+      "shift_direction": null
+    }
+  },
+  {
+    "tool": "animate_fade_in",
+    "arguments": {
+      "mobject_id": "m_872dc303",
+      "run_time": 0.8,
+      "shift_direction": null
+    }
+  },
+  {
+    "tool": "animate_fade_in",
+    "arguments": {
+      "mobject_id": "m_65fb28f9",
+      "run_time": 0.8,
+      "shift_direction": null
+    }
+  },
+  {
+    "tool": "animate_fade_in",
+    "arguments": {
+      "mobject_id": "m_e5a578ca",
+      "run_time": 0.8,
+      "shift_direction": null
+    }
+  },
+  {
+    "tool": "animate_fade_in",
+    "arguments": {
+      "mobject_id": "m_80de1bec",
+      "run_time": 0.8,
+      "shift_direction": null
+    }
+  },
+  {
+    "tool": "animate_fade_in",
+    "arguments": {
+      "mobject_id": "m_d0f7d716",
+      "run_time": 0.8,
+      "shift_direction": null
+    }
+  },
+  {
+    "tool": "add_wait",
+    "arguments": {
+      "duration": 5.0
+    }
+  },
+  {
+    "tool": "add_narration",
+    "arguments": {
+      "text": "Shor's algorithm combines classical preprocessing, quantum order finding, and classical post-processing to factor composite numbers exponentially faster than classical algorithms. This breakthrough has profound implications for cryptography, particularly the RSA cryptosystem.",
+      "lang": "en"
+    }
+  },
+  {
+    "tool": "get_scene_info",
+    "arguments": {}
+  },
+  {
+    "tool": "render_scene",
+    "arguments": {
+      "output_path": "/tmp/mcp_manimgl/shor_algorithm.mp4",
+      "fmt": "mp4"
+    }
+  },
+  {
+    "tool": "get_render_result",
+    "arguments": {
+      "render_id": "d8d45106ac79"
+    }
+  },
+  {
+    "tool": "get_render_result",
+    "arguments": {
+      "render_id": "d8d45106ac79"
+    }
+  },
+  {
+    "tool": "get_render_result",
+    "arguments": {
+      "render_id": "d8d45106ac79"
+    }
+  },
+  {
+    "tool": "get_render_result",
+    "arguments": {
+      "render_id": "d8d45106ac79"
+    }
+  },
+  {
+    "tool": "get_render_result",
+    "arguments": {
+      "render_id": "d8d45106ac79"
+    }
+  },
+  {
+    "tool": "get_render_result",
+    "arguments": {
+      "render_id": "d8d45106ac79"
+    }
+  },
+  {
+    "tool": "get_render_result",
+    "arguments": {
+      "render_id": "d8d45106ac79"
+    }
+  },
+  {
+    "tool": "get_render_result",
+    "arguments": {
+      "render_id": "d8d45106ac79"
+    }
+  },
+  {
+    "tool": "get_render_result",
+    "arguments": {
+      "render_id": "d8d45106ac79"
+    }
+  },
+  {
+    "tool": "get_render_result",
+    "arguments": {
+      "render_id": "d8d45106ac79"
+    }
+  },
+  {
+    "tool": "get_render_result",
+    "arguments": {
+      "render_id": "d8d45106ac79"
+    }
+  },
+  {
+    "tool": "get_render_result",
+    "arguments": {
+      "render_id": "d8d45106ac79"
+    }
+  },
+  {
+    "tool": "get_scene_info",
+    "arguments": {}
+  },
+  {
+    "tool": "render_scene",
+    "arguments": {
+      "output_path": "/tmp/mcp_manimgl/shor_algorithm.mp4",
+      "fmt": "mp4"
+    }
+  },
+  {
+    "tool": "get_render_result",
+    "arguments": {
+      "render_id": "2caa76e2c0d8"
+    }
+  },
+  {
+    "tool": "get_render_result",
+    "arguments": {
+      "render_id": "2caa76e2c0d8"
+    }
+  }
+]
