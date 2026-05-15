@@ -5,6 +5,7 @@ import uuid
 from typing import TYPE_CHECKING
 
 from mcp_manimgl.core.session_recorder import SessionRecorder, record_tool_call
+from mcp_manimgl.utils.audio_mixer import get_audio_duration
 
 if TYPE_CHECKING:
     from fastmcp import FastMCP
@@ -63,33 +64,7 @@ def register_audio_tools(
 
         from mcp_manimgl.core.scene_manager import AudioRecord
 
-        duration = 0.0
-        try:
-            import json
-            import subprocess
-
-            result = subprocess.run(
-                [
-                    "ffprobe",
-                    "-v",
-                    "quiet",
-                    "-print_format",
-                    "json",
-                    "-show_streams",
-                    str(os.path.abspath(file_path)),
-                ],
-                capture_output=True,
-                text=True,
-                timeout=15,
-            )
-            data = json.loads(result.stdout)
-            for stream in data.get("streams", []):
-                dur = stream.get("duration")
-                if dur:
-                    duration = float(dur)
-                    break
-        except Exception:
-            pass
+        duration = get_audio_duration(file_path)
 
         record = AudioRecord(
             audio_id=audio_id,

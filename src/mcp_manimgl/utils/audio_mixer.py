@@ -17,7 +17,7 @@ def _serialize_narration_tracks(tracks: list[dict[str, Any]]) -> list[dict[str, 
     timeline_end = 0.0
 
     for track in sorted_tracks:
-        dur = _get_audio_duration(track["file_path"])
+        dur = get_audio_duration(track["file_path"])
         start = track.get("start_time", 0.0)
         if start < timeline_end:
             start = timeline_end
@@ -27,7 +27,7 @@ def _serialize_narration_tracks(tracks: list[dict[str, Any]]) -> list[dict[str, 
     return result
 
 
-def _get_audio_duration(path: str) -> float:
+def get_audio_duration(path: str) -> float:
     result = subprocess.run(
         [
             "ffprobe",
@@ -50,7 +50,7 @@ def _get_audio_duration(path: str) -> float:
     return 0.0
 
 
-def _get_audio_channels(path: str) -> int:
+def get_audio_channels(path: str) -> int:
     result = subprocess.run(
         [
             "ffprobe",
@@ -141,7 +141,7 @@ def mix_audio(
     if not need_mixing:
         return video_path
 
-    video_duration = _get_audio_duration(video_path)
+    video_duration = get_audio_duration(video_path)
     if video_duration <= 0:
         video_duration = 60.0
 
@@ -152,7 +152,7 @@ def mix_audio(
 
     if music_path:
         if music_loop:
-            music_dur = _get_audio_duration(music_path)
+            music_dur = get_audio_duration(music_path)
             if music_dur > 0 and music_dur < video_duration:
                 looped_path = _preloop_audio(music_path, video_duration + 2.0)
                 cleanup_paths.append(looped_path)
@@ -186,8 +186,8 @@ def mix_audio(
     for i, nt in enumerate(narration_tracks):
         idx = i + (1 if music_path else 0) + 1
         start_ms = int(nt.get("start_time", 0) * 1000)
-        dur_ms = int(_get_audio_duration(nt["file_path"]) * 1000)
-        channels = _get_audio_channels(nt["file_path"])
+        dur_ms = int(get_audio_duration(nt["file_path"]) * 1000)
+        channels = get_audio_channels(nt["file_path"])
         adelay_arg = f"{start_ms}|{start_ms}" if channels > 1 else str(start_ms)
         filter_parts.append(
             f"[{idx}:a]adelay={adelay_arg}"
